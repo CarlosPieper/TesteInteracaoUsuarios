@@ -1,0 +1,143 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
+using EmagrecerSocial.API.Interfaces;
+using EmagrecerSocial.API.Models;
+using EmagrecerSocial.API.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+
+namespace EmagrecerSocial.API.Controllers
+{
+    [Route("[controller]/[action]")]
+    public class ForumController : Controller
+    {
+        private IForumRepository repository;
+        IUtilitiesRepository utilities;
+
+        public ForumController(IForumRepository _repository, IUtilitiesRepository _utilities)
+        {
+            this.repository = _repository;
+            this.utilities = _utilities;
+        }
+
+        [ActionName("Include")]
+        [HttpPost]
+        public ActionResult Include(Forum forum)
+        {
+            forum.Picture = UtilitiesRepository.filePath;
+            forum.Author = (int)HttpContext.Session.GetInt32("Id");
+            if (forum.Picture == null)
+                forum.Picture = " ";
+            try
+            {
+                repository.Include(forum);
+                return Ok(new { success = true });
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        [ActionName("Modify")]
+        [HttpPost]
+        public ActionResult Modify(Forum forum)
+        {
+            try
+            {
+                repository.Modify(forum);
+                return Ok(new { success = true });
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        [ActionName("ListForums")]
+        [HttpGet]
+        public ActionResult ListForums()
+        {
+            try
+            {
+                List<Forum> forums = repository.ListForums((int)HttpContext.Session.GetInt32("Id"));
+                return Ok(forums);
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        [ActionName("SearchForId")]
+        [HttpGet]
+        public ActionResult SearchForId(int id)
+        {
+            try
+            {
+                Forum forum = repository.SearchForId(id);
+                return Ok(forum);
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        [ActionName("Delete")]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                repository.Delete(id);
+                return Ok(new { success = true });
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [ActionName("ImagePost")]
+        [HttpPost]
+        public void ImagePost()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                string path = @"C:\\Emagrecer\\Emagrecer\\ClientApp\\src\\assets\\img\\";
+                string fileName = utilities.RemoveAccents(ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
+                UtilitiesRepository.filePath = "assets/img" + "/" + fileName.Replace(" ", "");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (file.Length > 0)
+                {
+                    string fullPath = Path.Combine(path, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [ActionName("ListUserForums")]
+        [HttpGet]
+        public ActionResult ListUserForums()
+        {
+            int user = (int)HttpContext.Session.GetInt32("Id");
+            List<Forum> forums = repository.GetUserForums(user);
+            return Ok(forums);
+        }
+    }
+}
