@@ -73,6 +73,7 @@ namespace api
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseSession();  
             app.UseMvc();
         }
     }
