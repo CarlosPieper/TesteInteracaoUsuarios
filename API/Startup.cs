@@ -1,15 +1,22 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using EmagrecerSocial.API.Models;
+using EmagrecerSocial.API.Interfaces;
+using EmagrecerSocial.API.Repositories;
+using MySql.Data.MySqlClient;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API
 {
