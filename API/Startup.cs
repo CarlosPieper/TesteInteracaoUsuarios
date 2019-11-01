@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EmagrecerSocial.API.Interfaces;
 using EmagrecerSocial.API.Models;
 using EmagrecerSocial.API.Repositories;
+using EmagrecerSocial.API.Hubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
+
 
 namespace api
 {
@@ -31,6 +33,7 @@ namespace api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             MySqlConnection connection = new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString"));
@@ -73,8 +76,12 @@ namespace api
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseSession();  
+            app.UseSession();
             app.UseMvc();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
         }
     }
 }
