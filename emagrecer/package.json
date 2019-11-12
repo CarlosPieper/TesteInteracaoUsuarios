@@ -4,11 +4,16 @@
   "private": true,
   "dependencies": {
     "@types/react-sidebar": "^3.0.0",
+    "install": "^0.13.0",
     "materialize-css": "^1.0.0",
+    "npm": "^6.13.0",
     "react": "^16.11.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.11.0",
     "react-drag-drawer": "^3.3.1",
     "react-materialize": "^3.4.1",
+    "react-modal": "^3.11.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-sidebar": "^3.0.2"
   },
