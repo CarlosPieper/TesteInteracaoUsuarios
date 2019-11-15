@@ -26,14 +26,15 @@ class Login extends Component {
     fetch("https://localhost:5001/User/Login?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('@authorization-token-emagrecer', data.token);
         });
       })
-    if (localStorage.getItem('token') != null && localStorage.getItem('token') != undefined && localStorage.getItem('token') != "") {
-      alert("aeho")
+    if (localStorage.getItem('@authorization-token-emagrecer') != null && localStorage.getItem('@authorization-token-emagrecer') != undefined && localStorage.getItem('@authorization-token-emagrecer') != "") {
+      this.props.history.push("/feed");
     }
     else {
       alert('Credencias incorretas');
+      localStorage.removeItem('@authorization-token-emagrecer');
     }
   }
   render() {
@@ -59,12 +60,12 @@ class Login extends Component {
                     </div>
                   </div>
                   <div className="row input-field col s12">
-                    <button onClick={this.submitHandler} className="waves-effect waves-light btn" >
-                      <i className="material-icons right" >send</i>LOGAR
+                    <button onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330 }}>
+                      <i className="material-icons right">send</i>LOGAR
                     </button>
                   </div>
                   <div className="row">
-                    <span>Não possui uma conta ainda? <a href="#">Registre-se agora!</a></span><br />
+                    <span>Não possui uma conta ainda? <a href="/cadastro">Registre-se agora!</a></span><br />
                     <a href="#passwordRetrieve" className="modal-trigger">
                       Esqueci minha senha
                   </a>
@@ -74,22 +75,20 @@ class Login extends Component {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col s4 offset-s4">
-            <div id="passwordRetrieve" className="modal">
-              <form className="col s12 white">
-                <div className="input-field col s12">
-                  <p> INFORME SEU E-MAIL, VOCÊ RECEBERÁ UM CÓDIGO PARA SUBSTITUIR SUA SENHA</p>
-                </div>
-                <div className="input-field col s12">
-                  <input type="email" name="Email" />
-                  <label className="active">E-mail</label>
-                </div>
-              </form>
+        <div className="col s4 offset-s4">
+          <div id="passwordRetrieve" className="modal">
+            <form className="col s12 white">
               <div className="input-field col s12">
-                <a className="waves-effect waves-light btn">
-                  <i className="material-icons right">send</i>ENVIAR</a>
+                <p> INFORME SEU E-MAIL, VOCÊ RECEBERÁ UM CÓDIGO PARA SUBSTITUIR SUA SENHA</p>
               </div>
+              <div className="input-field col s12">
+                <input type="email" name="Email" />
+                <label className="active">E-mail</label>
+              </div>
+            </form>
+            <div className="input-field col s12">
+              <a className="waves-effect waves-light btn">
+                <i className="material-icons right">send</i>ENVIAR</a>
             </div>
           </div>
         </div>

@@ -4,11 +4,13 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.formData = new FormData();
-    this.formData.email = "";
-    this.formData.password = "";
     this.state = {
-      email: '',
-      password: ''
+      Email: '',
+      Password: '',
+      Name: '',
+      BirthDate: '',
+      City: '',
+      ConfirmPassword: '',
     }
   }
   changeHandler = e => {
@@ -16,79 +18,94 @@ class Register extends Component {
   }
   submitHandler = e => {
     e.preventDefault();
-    this.formData = this.state;
-    this.Register();
-  }
-  Register() {
-    let queryString = new URLSearchParams();
-    queryString.append("email", this.formData.email);
-    queryString.append("password", this.formData.password);
-    fetch("https://localhost:5001/User/Register?" + queryString, { headers: { 'Content-Type': 'application/json' } })
-      .then(function (response) {
-        response.json().then(function (data) {
-          localStorage.setItem('token', data.token);
-        });
-      })
-    if (localStorage.getItem('token') != null && localStorage.getItem('token') != undefined && localStorage.getItem('token') != "") {
-      alert("aeho");
+    if (this.state.Password != this.state.ConfirmPassword) {
+      alert("As senhas devem coicidir!")
+    }
+    else if (!this.state.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+      alert("Email inválido!")
     }
     else {
-      alert('Credencias incorretas');
+      this.formData.append("Email", this.state.Email);
+      this.formData.append("Password", this.state.Password);
+      this.formData.append("Name", this.state.Name);
+      this.formData.append("BirthDate", this.state.BirthDate);
+      this.formData.append("City", this.state.City);
+      this.Register();
     }
   }
+  Register() {
+    const options = {
+      method: 'POST',
+      body: this.formData,
+    }
+    const request = new Request('https://localhost:5001/User/Register', options);
+    fetch(request);
+  }
   render() {
-    const { email, password } = this.state;
     return (
       <div>
         <div className="row">
-          <div className="col s4 offset-s4">
-            <div className="card large">
+          <div className="col s6 offset-s3">
+            <div className="card large" style={{ height: 700 }}>
               <div className="card-content black-text">
                 <form className="col s12 white">
-                  <h4>Entrar</h4>
+                  <h4 style={{ textAlign: "left" }}>Cadastre-se</h4>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input type="email" name="email" value={email} onChange={this.changeHandler} />
-                      <label className="active">E-mail</label>
+                      <p style={{ textAlign: "left" }}>Já é cadastrado? <a href="/login">Entre agora!</a></p>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input type="password" name="password" value={password} onChange={this.changeHandler} />
-                      <label className="active">Senha</label>
+                      <input onChange={this.changeHandler} type="text" name="Name" className="form-control" />
+                      <label className="inputLabel">Nome</label>
+                      <div className="invalid-feedback">
+                      </div>
                     </div>
                   </div>
-                  <div className="row input-field col s12">
-                    <button onClick={this.submitHandler} className="waves-effect waves-light btn" >
-                      <i className="material-icons right" >send</i>LOGAR
-                    </button>
+                  <div className="row">
+                    <div className="input-field col s6">
+                      <input onChange={this.changeHandler} type="password" name="Password" className="form-control" />
+                      <label className="inputLabel">Senha</label>
+                      <div className="invalid-feedback">
+                      </div>
+                    </div>
+                    <div className="input-field col s6">
+                      <input onChange={this.changeHandler} type="password" name="ConfirmPassword" className="form-control" />
+                      <label className="inputLabel">Confirmar senha</label>
+                      <div className="invalid-feedback">
+                      </div>
+                    </div>
                   </div>
                   <div className="row">
-                    <span>Não possui uma conta ainda? <a href="#">Registre-se agora!</a></span><br />
-                    <a href="#passwordRetrieve" className="modal-trigger">
-                      Esqueci minha senha
-                  </a>
+                    <div className="input-field col s12">
+                      <input onChange={this.changeHandler} type="email" name="Email" className="form-control" />
+                      <label className="inputLabel">E-mail</label>
+                      <div className="invalid-feedback">
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="input-field col s6">
+                      <input onChange={this.changeHandler} placeholder=" " type="date" name="BirthDate" className="form-control" />
+                      <label className="active">Data de Nascimento</label>
+                      <div className="invalid-feedback">
+                      </div>
+                    </div>
+                    <div className="input-field col s6">
+                      <input onChange={this.changeHandler} type="text" name="City" className="form-control" />
+                      <label className="inputLabel">Cidade (opcional)</label>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <div className="input-field col s12">
+                        <a className="waves-effect waves-light btn" onClick={this.submitHandler} style={{ textAlign: "center", width: 520 }}>
+                          <i className="material-icons right">send</i>REGISTRAR</a>
+                      </div>
+                    </div>
                   </div>
                 </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s4 offset-s4">
-            <div id="passwordRetrieve" className="modal">
-              <form className="col s12 white">
-                <div className="input-field col s12">
-                  <p> INFORME SEU E-MAIL, VOCÊ RECEBERÁ UM CÓDIGO PARA SUBSTITUIR SUA SENHA</p>
-                </div>
-                <div className="input-field col s12">
-                  <input type="email" name="Email" />
-                  <label className="active">E-mail</label>
-                </div>
-              </form>
-              <div className="input-field col s12">
-                <a className="waves-effect waves-light btn">
-                  <i className="material-icons right">send</i>ENVIAR</a>
               </div>
             </div>
           </div>
