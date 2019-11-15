@@ -51,7 +51,7 @@ namespace EmagrecerSocial.API.Controllers
         }
 
         [ActionName("Login")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult Login(string email, string password)
         {
             var token = "";
@@ -74,7 +74,7 @@ namespace EmagrecerSocial.API.Controllers
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     token = tokenHandler.WriteToken(securityToken);
-                    return Ok(new { token });
+                    return Ok(new { token = token });
                 }
                 else
                 {

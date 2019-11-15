@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.formData = new FormData();
@@ -17,20 +17,20 @@ class Login extends Component {
   submitHandler = e => {
     e.preventDefault();
     this.formData = this.state;
-    this.Login();
+    this.Register();
   }
-  Login() {
+  Register() {
     let queryString = new URLSearchParams();
     queryString.append("email", this.formData.email);
     queryString.append("password", this.formData.password);
-    fetch("https://localhost:5001/User/Login?" + queryString, { headers: { 'Content-Type': 'application/json' } })
+    fetch("https://localhost:5001/User/Register?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
           localStorage.setItem('token', data.token);
         });
       })
     if (localStorage.getItem('token') != null && localStorage.getItem('token') != undefined && localStorage.getItem('token') != "") {
-      alert("aeho")
+      alert("aeho");
     }
     else {
       alert('Credencias incorretas');
@@ -97,4 +97,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Register;
