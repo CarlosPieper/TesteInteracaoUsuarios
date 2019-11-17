@@ -3,29 +3,24 @@ import NewForum from './newForum';
 import Pnav from './pNav';
 import LsGroup from './LsGroup';
 import NewGroup from './newGroup';
-  class MySide extends Component {
-    render() {
-      return (
-  <div>
-
-  
-  
+class MySide extends Component {
+  render() {
+    return (
+      <div>
         <ul className="side-nav  fMenu fixed">
-         <Pnav/>
+          <Pnav />
           <div className="opMenu" >
-          <NewForum/>
-            <NewGroup/>
-       
+            <NewForum />
+            <NewGroup />
           </div>
           <h4 class="gp">GRUPOS</h4>
           <div className="pa">
-            <LsGroup/>
+            <LsGroup />
           </div>
         </ul>
-   
-        </div>
-      );
-    }
+      </div>
+    );
   }
-  
+}
+
 export default MySide;

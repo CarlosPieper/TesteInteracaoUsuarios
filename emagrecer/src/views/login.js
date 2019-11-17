@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { login, isAuthenticated } from '../services/auth';
 
 class Login extends Component {
   constructor(props) {
@@ -26,15 +27,14 @@ class Login extends Component {
     fetch("https://localhost:5001/User/Login?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
-          localStorage.setItem('@authorization-token-emagrecer', data.token);
+          setTimeout(() => { login(data.token); }, 100);
         });
-      })
-    if (localStorage.getItem('@authorization-token-emagrecer') != null && localStorage.getItem('@authorization-token-emagrecer') != undefined && localStorage.getItem('@authorization-token-emagrecer') != "") {
-      this.props.history.push("/feed");
+      });
+    if (isAuthenticated()) {
+      setTimeout(() => { this.props.history.push("/feed"); }, 100);
     }
     else {
       alert('Credencias incorretas');
-      localStorage.removeItem('@authorization-token-emagrecer');
     }
   }
   render() {
@@ -66,9 +66,7 @@ class Login extends Component {
                   </div>
                   <div className="row">
                     <span>Não possui uma conta ainda? <a href="/cadastro">Registre-se agora!</a></span><br />
-                    <a href="#passwordRetrieve" className="modal-trigger">
-                      Esqueci minha senha
-                  </a>
+                    <a href="#passwordRetrieve" className="modal-trigger">Esqueci minha senha</a>
                   </div>
                 </form>
               </div>

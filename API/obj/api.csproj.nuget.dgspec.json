@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\EmagrecerSocial\\api\\api.csproj": {}
+    "C:\\EmagrecerSocial\\API\\api.csproj": {}
   },
   "projects": {
-    "C:\\EmagrecerSocial\\api\\api.csproj": {
+    "C:\\EmagrecerSocial\\API\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\EmagrecerSocial\\api\\api.csproj",
+        "projectUniqueName": "C:\\EmagrecerSocial\\API\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\EmagrecerSocial\\api\\api.csproj",
+        "projectPath": "C:\\EmagrecerSocial\\API\\api.csproj",
         "packagesPath": "C:\\Users\\Carlos\\.nuget\\packages\\",
-        "outputPath": "C:\\EmagrecerSocial\\api\\obj\\",
+        "outputPath": "C:\\EmagrecerSocial\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -10,5 +10,6 @@ namespace EmagrecerSocial.API.Interfaces
         List<Forum> ListForums(int user);
         void Delete(int id);
         List<Forum> GetUserForums(int user);
+        bool UserHasFriends(int user);
     }
 }

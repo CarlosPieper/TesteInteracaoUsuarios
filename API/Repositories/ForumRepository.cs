@@ -69,6 +69,7 @@ namespace EmagrecerSocial.API.Repositories
             return forums;
         }
 
+
         public void Modify(Forum forum) //ainda não sei se isso vai ser mantido
         {
             connection.Open();
@@ -134,6 +135,28 @@ namespace EmagrecerSocial.API.Repositories
             }
             connection.Close();
             return forums;
+        }
+
+        public bool UserHasFriends(int user)
+        {
+            connection.Open();
+            string sql = "SELECT count(*) AS CONTAGEM FROM FRIENDS WHERE USER = ? OR FRIEND = ?";
+            using (MySqlCommand command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.Add(@"USER", MySqlDbType.Int32).Value = user;
+                command.Parameters.Add(@"FRIEND", MySqlDbType.Int32).Value = user;
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 }

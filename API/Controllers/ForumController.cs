@@ -61,9 +61,17 @@ namespace EmagrecerSocial.API.Controllers
         [HttpGet]
         public ActionResult ListForums()
         {
+            List<Forum> forums = new List<Forum>();
             try
             {
-                List<Forum> forums = repository.ListForums((int)HttpContext.Session.GetInt32("Id"));
+                if (repository.UserHasFriends((int)HttpContext.Session.GetInt32("Id")))
+                {
+                    forums = repository.ListForums((int)HttpContext.Session.GetInt32("Id"));
+                }
+                else
+                {
+                    forums = repository.GetUserForums((int)HttpContext.Session.GetInt32("Id"));
+                }
                 return Ok(forums);
             }
             catch (MySqlException ex)

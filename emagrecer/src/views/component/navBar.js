@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { logout } from '../../services/auth';
+
 class MyNav extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
+  logOut() {
+    setTimeout(() => { logout(); }, 100);
+  }
+
   render() {
     return (
       <div className="navbar-fixed">
@@ -11,15 +21,10 @@ class MyNav extends Component {
                 <a data-toggle="modal" data-target="#myModal" className="button-collapse"><i className="material-icons">menu</i></a>
               </li>
             </ul>
-            <Link to="/home">
-              <div className="brand-logo center"><img src='https://static.wixstatic.com/media/2c60fd_c7d2eff1f7e54db3b998135b85c8a5d7~mv2.png/v1/fit/w_2500,h_1330,al_c/2c60fd_c7d2eff1f7e54db3b998135b85c8a5d7~mv2.png' width="50%"></img></div>
-
-            </Link>
-
             <ul id="nav-mobile" className="right">
-              <li><a href="#" data-activates="friends-out" className="button-collapse "><i class="material-icons right ">recent_actors</i>Amigos</a></li>
-              <li><a href="perfil.html" className="button hide-on-med-and-down"><i class="material-icons right">account_circle</i>Perfil</a>
-              </li>
+              <li><a href="#" data-activates="friends-out" className="button-collapse "><i className="material-icons right ">recent_actors</i>Amigos</a></li>
+              <li><a href="/perfil" className="button hide-on-med-and-down"><i className="material-icons right">account_circle</i>Perfil</a></li>
+              <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right">exit_to_app</i>Sair</a></li>
             </ul>
           </div>
         </nav>

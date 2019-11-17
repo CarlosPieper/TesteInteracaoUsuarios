@@ -59,9 +59,9 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 User user = repository.Login(email, password);
+                HttpContext.Session.SetInt32("Id", user.Id);
                 if (user.Id != 0)
                 {
-                    HttpContext.Session.SetInt32("Id", user.Id);
                     var tokenDescriptor = new SecurityTokenDescriptor()
                     {
                         Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]

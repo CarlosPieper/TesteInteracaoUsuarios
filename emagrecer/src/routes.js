@@ -6,17 +6,13 @@ import { isAuthenticated } from "./services/auth";
 import Register from "./views/register";
 import Login from "./views/login";
 import Feed from "./views/feed";
-
+import Profile from "./views/profile";
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            isAuthenticated() ? (
-                <Component {...props} />
-            ) : (
-                    <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-                )
-        }
+            isAuthenticated() ? (<Component {...props} />) :
+                (<Redirect to={{ pathname: "/", state: { from: props.location } }} />)}
     />
 );
 
@@ -27,6 +23,7 @@ const Routes = () => (
             <Route path="/login" component={Login} />
             <Route path="/cadastro" component={Register} />
             <PrivateRoute path="/feed" component={Feed} />
+            <PrivateRoute path="/perfil" component={Profile} />
         </Switch>
     </BrowserRouter>
 );
