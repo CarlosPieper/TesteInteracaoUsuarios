@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\EmagrecerSocial\\API\\api.csproj": {}
+    "C:\\EmagrecerSocial\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\EmagrecerSocial\\API\\api.csproj": {
+    "C:\\EmagrecerSocial\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\EmagrecerSocial\\API\\api.csproj",
+        "projectUniqueName": "C:\\EmagrecerSocial\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\EmagrecerSocial\\API\\api.csproj",
+        "projectPath": "C:\\EmagrecerSocial\\api\\api.csproj",
         "packagesPath": "C:\\Users\\Carlos\\.nuget\\packages\\",
-        "outputPath": "C:\\EmagrecerSocial\\API\\obj\\",
+        "outputPath": "C:\\EmagrecerSocial\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -51,8 +51,16 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"
             },

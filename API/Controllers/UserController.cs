@@ -52,14 +52,13 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Login")]
         [HttpGet]
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(string email = "", string password = "")
         {
             var token = "";
             password = Cryptography.EncryptPassword(password);
             try
             {
                 User user = repository.Login(email, password);
-                HttpContext.Session.SetInt32("Id", user.Id);
                 if (user.Id != 0)
                 {
                     var tokenDescriptor = new SecurityTokenDescriptor()
@@ -74,11 +73,11 @@ namespace EmagrecerSocial.API.Controllers
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     token = tokenHandler.WriteToken(securityToken);
-                    return Ok(new { token = token });
+                    return Ok(new { token = token, success = true, id = user.Id });
                 }
                 else
                 {
-                    return Ok(new { token });
+                    return Ok(new { token, success = true });
                 }
             }
             catch (MySqlException ex)
@@ -89,10 +88,9 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Edit")]
         [HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(User user, int id)
         {
-
-            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            user.Id = id;
             user.Password = Cryptography.EncryptPassword(user.Password);
             user.Cpf = " ";
             if (user.ProfilePic == "" || user.ProfilePic == null)
@@ -157,11 +155,11 @@ namespace EmagrecerSocial.API.Controllers
         }
         [HttpGet]
         [ActionName("GetUserData")]
-        public ActionResult GetUserData(int id)
+        public ActionResult GetUserData(int id, int idLogged)
         {
-            if (id == (int)HttpContext.Session.GetInt32("Id") || id == 0)
+            if (id == idLogged || id == 0)
             {
-                User user = repository.SearchById((int)HttpContext.Session.GetInt32("Id"));
+                User user = repository.SearchById(idLogged);
                 return Ok(new { user = user, canEdit = true });
             }
             else

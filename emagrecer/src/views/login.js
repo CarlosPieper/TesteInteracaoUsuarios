@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { login, isAuthenticated } from '../services/auth';
+import { login, isAuthenticated, setId } from '../services/auth';
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
     this.formData = new FormData();
@@ -18,24 +19,34 @@ class Login extends Component {
   submitHandler = e => {
     e.preventDefault();
     this.formData = this.state;
-    this.Login();
+    if (this.formData.email == undefined || this.formData.email == null || this.formData.email == "")
+      alert("Insira um email!")
+    else if (this.formData.password == undefined || this.formData.password == null || this.formData.password == "")
+      alert("Insira uma senha!")
+    else
+      this.Login();
   }
   Login() {
+    var self = this;
     let queryString = new URLSearchParams();
     queryString.append("email", this.formData.email);
     queryString.append("password", this.formData.password);
     fetch("https://localhost:5001/User/Login?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
-          setTimeout(() => { login(data.token); }, 100);
+          login(data.token);
+          setId(data.id);
+          if (isAuthenticated()) {
+            self.props.history.push("/feed");
+          }
+          else {
+            alert('Credencias incorretas');
+          }
         });
+      })
+      .catch(function (err) {
+        alert("Erro!");
       });
-    if (isAuthenticated()) {
-      setTimeout(() => { this.props.history.push("/feed"); }, 100);
-    }
-    else {
-      alert('Credencias incorretas');
-    }
   }
   render() {
     const { email, password } = this.state;

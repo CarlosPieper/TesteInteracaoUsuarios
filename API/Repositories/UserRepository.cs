@@ -169,7 +169,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Open();
+            connection.Close();
             return users;
         }
 

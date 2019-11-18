@@ -139,6 +139,7 @@ namespace EmagrecerSocial.API.Repositories
 
         public bool UserHasFriends(int user)
         {
+            var contagem = 0;
             connection.Open();
             string sql = "SELECT count(*) AS CONTAGEM FROM FRIENDS WHERE USER = ? OR FRIEND = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -149,14 +150,12 @@ namespace EmagrecerSocial.API.Repositories
                 {
                     if (reader.Read())
                     {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        contagem = reader.GetInt32("CONTAGEM");
                     }
                 }
             }
+            connection.Close();
+            return contagem > 0;
         }
     }
 }

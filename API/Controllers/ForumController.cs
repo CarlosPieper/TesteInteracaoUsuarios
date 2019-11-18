@@ -16,7 +16,6 @@ namespace EmagrecerSocial.API.Controllers
     {
         private IForumRepository repository;
         IUtilitiesRepository utilities;
-
         public ForumController(IForumRepository _repository, IUtilitiesRepository _utilities)
         {
             this.repository = _repository;
@@ -25,10 +24,10 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Include")]
         [HttpPost]
-        public ActionResult Include(Forum forum)
+        public ActionResult Include(Forum forum, int id)
         {
             forum.Picture = UtilitiesRepository.filePath;
-            forum.Author = (int)HttpContext.Session.GetInt32("Id");
+            forum.Author = id;
             if (forum.Picture == null)
                 forum.Picture = " ";
             try
@@ -59,18 +58,19 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("ListForums")]
         [HttpGet]
-        public ActionResult ListForums()
+        public ActionResult ListForums(int id)
         {
+            int user = id;
             List<Forum> forums = new List<Forum>();
             try
             {
-                if (repository.UserHasFriends((int)HttpContext.Session.GetInt32("Id")))
+                if (repository.UserHasFriends(user))
                 {
-                    forums = repository.ListForums((int)HttpContext.Session.GetInt32("Id"));
+                    forums = repository.ListForums(user);
                 }
                 else
                 {
-                    forums = repository.GetUserForums((int)HttpContext.Session.GetInt32("Id"));
+                    forums = repository.GetUserForums(user);
                 }
                 return Ok(forums);
             }
@@ -141,9 +141,9 @@ namespace EmagrecerSocial.API.Controllers
         }
         [ActionName("ListUserForums")]
         [HttpGet]
-        public ActionResult ListUserForums()
+        public ActionResult ListUserForums(int id)
         {
-            int user = (int)HttpContext.Session.GetInt32("Id");
+            int user = id;
             List<Forum> forums = repository.GetUserForums(user);
             return Ok(forums);
         }

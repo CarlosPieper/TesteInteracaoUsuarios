@@ -13,7 +13,7 @@ class MySide extends Component {
             <NewForum />
             <NewGroup />
           </div>
-          <h4 class="gp">GRUPOS</h4>
+          <h4 className="gp">GRUPOS</h4>
           <div className="pa">
             <LsGroup />
           </div>

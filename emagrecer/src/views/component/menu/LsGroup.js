@@ -5,10 +5,6 @@ class LsGroup extends Component {
 <ul className="collection  avatar"  >
   
               <li className="collection-item ">
-                <img src="user.png" class="circle ImgGp" />
-                <span className="title">Nando</span>
-              </li>
-              <li className="collection-item ">
                 <img src="user.png" className="circle ImgGp" />
                 <span className="title">Nando</span>
               </li>
@@ -28,7 +24,11 @@ class LsGroup extends Component {
                 <img src="user.png" className="circle ImgGp" />
                 <span className="title">Nando</span>
               </li>
-              <li class="collection-item ">
+              <li className="collection-item ">
+                <img src="user.png" className="circle ImgGp" />
+                <span className="title">Nando</span>
+              </li>
+              <li className="collection-item ">
                 <img src="user.png" className="circle ImgGp" />
                 <span className="title">Nando</span>
               </li>

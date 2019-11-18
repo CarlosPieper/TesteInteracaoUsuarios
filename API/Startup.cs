@@ -18,7 +18,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
-
+using Microsoft.AspNetCore.Http;
+using EmagrecerSocial.API.Controllers;
 
 namespace api
 {
@@ -33,6 +34,22 @@ namespace api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            MySqlConnection connection = new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString"));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<MySqlConnection>(connection);
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IForumRepository, ForumRepository>();
+            services.AddSingleton<IForumCommentRepository, ForumCommentRepository>();
+            services.AddSingleton<IMessageRepository, MessageRepository>();
+            services.AddSingleton<IUtilitiesRepository, UtilitiesRepository>();
+            services.AddSingleton<UserController>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
+            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
             {
                 builder
@@ -42,17 +59,6 @@ namespace api
                 .AllowCredentials();
             }));
             services.AddSignalR();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
-            MySqlConnection connection = new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString"));
-            services.AddSingleton<MySqlConnection>(connection);
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IForumRepository, ForumRepository>();
-            services.AddSingleton<IForumCommentRepository, ForumCommentRepository>();
-            services.AddSingleton<IMessageRepository, MessageRepository>();
-            services.AddSingleton<IUtilitiesRepository, UtilitiesRepository>();
-            services.AddDistributedMemoryCache();
-            services.AddSession();
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWTSecret"].ToString());
             services.AddAuthentication(x =>
             {
@@ -76,6 +82,7 @@ namespace api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors("CorsPolicy");
+            app.UseCookiePolicy();
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chatHub");
@@ -90,7 +97,13 @@ namespace api
             }
             app.UseHttpsRedirection();
             app.UseSession();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
         }
     }
 }
+
