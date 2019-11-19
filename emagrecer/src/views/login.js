@@ -19,9 +19,9 @@ class Login extends Component {
   submitHandler = e => {
     e.preventDefault();
     this.formData = this.state;
-    if (this.formData.email == undefined || this.formData.email == null || this.formData.email == "")
+    if (this.formData.email === undefined || this.formData.email === null || this.formData.email === "")
       alert("Insira um email!")
-    else if (this.formData.password == undefined || this.formData.password == null || this.formData.password == "")
+    else if (this.formData.password === undefined || this.formData.password === null || this.formData.password === "")
       alert("Insira uma senha!")
     else
       this.Login();

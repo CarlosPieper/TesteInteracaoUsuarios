@@ -155,11 +155,12 @@ namespace EmagrecerSocial.API.Controllers
         }
         [HttpGet]
         [ActionName("GetUserData")]
-        public ActionResult GetUserData(int id, int idLogged)
+        public ActionResult GetUserData(int idLogged, int id = 0)
         {
             if (id == idLogged || id == 0)
             {
                 User user = repository.SearchById(idLogged);
+                user.Password = "";
                 return Ok(new { user = user, canEdit = true });
             }
             else
@@ -199,9 +200,9 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                string path = @"C:\\Emagrecer\\Emagrecer\\ClientApp\\src\\assets\\img\\";
+                string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\";
                 string fileName = utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
-                UtilitiesRepository.profilePic = "assets/img" + "/" + fileName;
+                UtilitiesRepository.profilePic = "/images" + "/" + fileName;
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -229,9 +230,9 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                string path = @"C:\\Emagrecer\\Emagrecer\\ClientApp\\src\\assets\\img\\";
+                string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\";
                 string fileName = utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
-                UtilitiesRepository.coverPic = "assets/img" + "/" + fileName;
+                UtilitiesRepository.coverPic = "/images" + "/" + fileName;
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

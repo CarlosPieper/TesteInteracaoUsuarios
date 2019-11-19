@@ -118,9 +118,9 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                string path = @"C:\\Emagrecer\\Emagrecer\\ClientApp\\src\\assets\\img\\";
+                string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\";
                 string fileName = utilities.RemoveAccents(ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
-                UtilitiesRepository.filePath = "assets/img" + "/" + fileName.Replace(" ", "");
+                UtilitiesRepository.filePath = "/images" + "/" + fileName.Replace(" ", "");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

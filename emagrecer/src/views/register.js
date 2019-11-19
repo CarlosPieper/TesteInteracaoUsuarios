@@ -18,7 +18,7 @@ class Register extends Component {
   }
   submitHandler = e => {
     e.preventDefault();
-    if (this.state.Password != this.state.ConfirmPassword) {
+    if (this.state.Password !== this.state.ConfirmPassword) {
       alert("As senhas devem coicidir!")
     }
     else if (!this.state.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
@@ -100,7 +100,7 @@ class Register extends Component {
                   <div className="row">
                     <div className="input-field col s12">
                       <div className="input-field col s12">
-                        <a className="waves-effect waves-light btn" onClick={this.submitHandler} style={{ textAlign: "center", width: 520 }}>
+                        <a href="/login" className="waves-effect waves-light btn" onClick={this.submitHandler} style={{ textAlign: "center", width: 520 }}>
                           <i className="material-icons right">send</i>REGISTRAR</a>
                       </div>
                     </div>
