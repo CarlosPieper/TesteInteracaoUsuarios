@@ -143,9 +143,8 @@ namespace EmagrecerSocial.API.Controllers
         [HttpGet]
         public ActionResult ListUserForums(int id)
         {
-            int user = id;
-            List<Forum> forums = repository.GetUserForums(user);
-            return Ok(forums);
+            List<Forum> forums = repository.GetUserForums(id);
+            return Ok(new {forums = forums});
         }
     }
 }

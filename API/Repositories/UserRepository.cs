@@ -206,6 +206,7 @@ namespace EmagrecerSocial.API.Repositories
 
         public bool VerifyEmail(string email)
         {
+            bool temEmail = false;
             connection.Open();
             string sql = @"SELECT * FROM USERS WHERE EMAIL = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -215,16 +216,16 @@ namespace EmagrecerSocial.API.Repositories
                 {
                     if (reader.Read())
                     {
-                        connection.Close();
-                        return false;
+                        temEmail = false;
                     }
                     else
                     {
-                        connection.Close();
-                        return true;
+                        temEmail = true;
                     }
                 }
             }
+            connection.Close();
+            return temEmail;
         }
     }
 }

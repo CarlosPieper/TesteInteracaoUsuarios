@@ -131,7 +131,7 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 List<User> users = repository.SearchByName(name);
-                return Ok(users);
+                return Ok(new { users = users });
             }
             catch (MySqlException ex)
             {

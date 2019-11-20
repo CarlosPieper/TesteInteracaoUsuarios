@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { isAuthenticated } from "./services/auth";
-
+import UserList from "./views/userList";
 import Register from "./views/register";
 import Login from "./views/login";
 import Feed from "./views/feed";
@@ -22,6 +22,7 @@ const Routes = () => (
             <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/cadastro" component={Register} />
+            <PrivateRoute path="/usuarios/:name" component={UserList} />
             <PrivateRoute path="/feed" component={Feed} />
             <PrivateRoute path="/perfil/:id" component={Profile} />
         </Switch>

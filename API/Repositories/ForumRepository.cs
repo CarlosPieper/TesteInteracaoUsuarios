@@ -112,9 +112,9 @@ namespace EmagrecerSocial.API.Repositories
 
         public List<Forum> GetUserForums(int user)
         {
-            connection.Open();
             List<Forum> forums = new List<Forum>();
             string sql = "SELECT F.*, U.NAME AS AUTHORNAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
+            connection.Open();
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = user;
