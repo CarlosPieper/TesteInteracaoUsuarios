@@ -14,7 +14,6 @@ class Feed extends Component {
       <div>
         <MyNav />
         <MySide />
-        <Friends />
         <Posts />
       </div>
     );

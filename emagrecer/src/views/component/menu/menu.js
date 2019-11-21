@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewForum from './newForum';
 import Pnav from './pNav';
+import Friends from '../friends'
 import LsGroup from './LsGroup';
 import NewGroup from './newGroup';
 class MySide extends Component {
@@ -11,11 +12,12 @@ class MySide extends Component {
           <Pnav />
           <div className="opMenu" >
             <NewForum />
-            <NewGroup />
+            <Friends />
+            {/* <NewGroup />
           </div>
           <h4 className="gp">GRUPOS</h4>
           <div className="pa">
-            <LsGroup />
+            <LsGroup />*/}
           </div>
         </ul>
       </div>
