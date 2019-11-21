@@ -110,9 +110,9 @@ namespace EmagrecerSocial.API.Repositories
 
         public User Login(string email, string password)
         {
-            connection.Open();
             User user = new User();
             string sql = @"SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
+            connection.Open();
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add("@EMAIL", MySqlDbType.String).Value = email;
@@ -142,9 +142,9 @@ namespace EmagrecerSocial.API.Repositories
 
         public List<User> SearchByName(string name)
         {
-            connection.Open();
             List<User> users = new List<User>();
             string sql = @"SELECT * FROM USERS WHERE NAME LIKE ?";
+            connection.Open();
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add("@NAME", MySqlDbType.String).Value = "%" + name + "%";
@@ -207,8 +207,8 @@ namespace EmagrecerSocial.API.Repositories
         public bool VerifyEmail(string email)
         {
             bool temEmail = false;
-            connection.Open();
             string sql = @"SELECT * FROM USERS WHERE EMAIL = ?";
+            connection.Open();
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add("@EMAIL", MySqlDbType.String).Value = email;

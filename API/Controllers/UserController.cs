@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
-using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http.Headers;
 
@@ -73,7 +72,8 @@ namespace EmagrecerSocial.API.Controllers
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     token = tokenHandler.WriteToken(securityToken);
-                    return Ok(new { token = token, success = true, id = user.Id });
+                    user.Password = "";
+                    return Ok(new { token = token, success = true, user = user });
                 }
                 else
                 {
@@ -157,15 +157,16 @@ namespace EmagrecerSocial.API.Controllers
         [ActionName("GetUserData")]
         public ActionResult GetUserData(int idLogged, int id = 0)
         {
+            User user = new User();
             if (id == idLogged || id == 0)
             {
-                User user = repository.SearchById(idLogged);
+                user = repository.SearchById(idLogged);
                 user.Password = "";
                 return Ok(new { user = user, canEdit = true });
             }
             else
             {
-                return SearchById(id);
+                return Ok(new { user = repository.SearchById(id) });
             }
         }
 

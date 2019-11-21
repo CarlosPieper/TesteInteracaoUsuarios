@@ -34,7 +34,7 @@ class UserList extends Component {
             .then(function (response) {
                 response.json().then(function (data) {
                     self.setState({ users: data.users });
-                    console.log(self.state.users);
+                    //console.log(self.state.users);
                 });
             })
             .catch(function (err) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { login, isAuthenticated, setId } from '../services/auth';
+import { login, isAuthenticated, setId, getId } from '../services/auth';
 
 class Login extends Component {
 
@@ -35,7 +35,8 @@ class Login extends Component {
       .then(function (response) {
         response.json().then(function (data) {
           login(data.token);
-          setId(data.id);
+          setId(data.user.id);
+          alert(getId())
           if (isAuthenticated()) {
             self.props.history.push("/feed");
           }
@@ -57,17 +58,17 @@ class Login extends Component {
             <div className="card large">
               <div className="card-content black-text">
                 <form className="col s12 white">
-                  <h4>Entrar</h4>
+                  <h4>ENTRAR</h4>
                   <div className="row">
                     <div className="input-field col s12">
                       <input type="email" name="email" value={email} onChange={this.changeHandler} />
-                      <label className="active">E-mail</label>
+                      <label className="active">E-MAIL</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
                       <input type="password" name="password" value={password} onChange={this.changeHandler} />
-                      <label className="active">Senha</label>
+                      <label className="active">SENHA</label>
                     </div>
                   </div>
                   <div className="row input-field col s12">
@@ -76,8 +77,8 @@ class Login extends Component {
                     </button>
                   </div>
                   <div className="row">
-                    <span>Não possui uma conta ainda? <a href="/cadastro">Registre-se agora!</a></span><br />
-                    <a href="#passwordRetrieve" className="modal-trigger">Esqueci minha senha</a>
+                    <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span><br />
+                    <a href="#passwordRetrieve" className="modal-trigger">ESQUECI MINHA SENHA</a>
                   </div>
                 </form>
               </div>
@@ -92,7 +93,7 @@ class Login extends Component {
               </div>
               <div className="input-field col s12">
                 <input type="email" name="Email" />
-                <label className="active">E-mail</label>
+                <label className="active">E-MAIL</label>
               </div>
             </form>
             <div className="input-field col s12">

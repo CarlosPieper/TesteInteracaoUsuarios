@@ -34,12 +34,20 @@ class Register extends Component {
     }
   }
   Register() {
+    var self = this;
     const options = {
       method: 'POST',
       body: this.formData,
     }
     const request = new Request('https://localhost:5001/User/Register', options);
-    fetch(request);
+    fetch(request).then(function (response) {
+      response.json().then(function (data) {
+        alert("Cadastrado com sucesso!");
+        self.props.history.push("/login");
+      })
+    }).catch(function (err) {
+      alert("Erro ao cadastrar!")
+    });
   }
   render() {
     return (
@@ -49,52 +57,42 @@ class Register extends Component {
             <div className="card large" style={{ height: 700 }}>
               <div className="card-content black-text">
                 <form className="col s12 white">
-                  <h4 style={{ textAlign: "left" }}>Cadastre-se</h4>
+                  <h4 style={{ textAlign: "left" }}>CADASTRE-SE</h4>
                   <div className="row">
                     <div className="input-field col s12">
-                      <p style={{ textAlign: "left" }}>Já é cadastrado? <a href="/login">Entre agora!</a></p>
+                      <p style={{ textAlign: "left" }}>JÁ É CADASTRADO? <a href="/login">ENTRE AGORA!</a></p>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
                       <input onChange={this.changeHandler} type="text" name="Name" className="form-control" />
-                      <label className="inputLabel">Nome</label>
-                      <div className="invalid-feedback">
-                      </div>
+                      <label className="inputLabel">NOME</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s6">
                       <input onChange={this.changeHandler} type="password" name="Password" className="form-control" />
-                      <label className="inputLabel">Senha</label>
-                      <div className="invalid-feedback">
-                      </div>
+                      <label className="inputLabel">SENHA</label>
                     </div>
                     <div className="input-field col s6">
                       <input onChange={this.changeHandler} type="password" name="ConfirmPassword" className="form-control" />
-                      <label className="inputLabel">Confirmar senha</label>
-                      <div className="invalid-feedback">
-                      </div>
+                      <label className="inputLabel">CONFIRMAR SENHA</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
                       <input onChange={this.changeHandler} type="email" name="Email" className="form-control" />
-                      <label className="inputLabel">E-mail</label>
-                      <div className="invalid-feedback">
-                      </div>
+                      <label className="inputLabel">E-MAIL</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s6">
                       <input onChange={this.changeHandler} placeholder=" " type="date" name="BirthDate" className="form-control" />
-                      <label className="active">Data de Nascimento</label>
-                      <div className="invalid-feedback">
-                      </div>
+                      <label className="active">DATA DE NASCIMENTO</label>
                     </div>
                     <div className="input-field col s6">
                       <input onChange={this.changeHandler} type="text" name="City" className="form-control" />
-                      <label className="inputLabel">Cidade (opcional)</label>
+                      <label className="inputLabel">CIDADE (OPCIONAL)</label>
                     </div>
                   </div>
                   <div className="row">
