@@ -60,17 +60,16 @@ namespace EmagrecerSocial.API.Controllers
         [HttpGet]
         public ActionResult ListForums(int id)
         {
-            int user = id;
             List<Forum> forums = new List<Forum>();
             try
             {
-                if (repository.UserHasFriends(user))
+                if (repository.UserHasFriends(id))
                 {
-                    forums = repository.ListForums(user);
+                    forums = repository.ListForums(id);
                 }
                 else
                 {
-                    forums = repository.GetUserForums(user);
+                    forums = repository.GetUserForums(id);
                 }
                 return Ok(forums);
             }

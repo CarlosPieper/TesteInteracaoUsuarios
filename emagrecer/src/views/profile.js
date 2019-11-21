@@ -48,10 +48,9 @@ class Profile extends Component {
             }],
         }
     }
-    
+
     componentWillMount() {
         setTimeout(() => { this.GetUserInfo(); }, 100);
-        setTimeout(() => { this.GetForums(); }, 1000);
         Modal.setAppElement('body');
     }
 
@@ -88,7 +87,7 @@ class Profile extends Component {
                 response.json().then(function (data) {
                     self.setState({ user: data.user });
                     self.setState({ canEdit: data.canEdit })
-                    //console.log(self.state.user);
+                    setTimeout(() => { self.GetForums(); }, 1000);
                 });
             })
             .catch(function (err) {

@@ -4,7 +4,8 @@ import { getId } from '../../services/auth';
 class Post extends Component {
   constructor(props) {
     super(props);
-    this.getPosts();
+    setTimeout(() => { this.getPosts(); }, 1000);
+
   }
 
   getPosts() {
