@@ -146,7 +146,7 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 List<User> friends = repository.ListFriends(id);
-                return Ok(friends);
+                return Ok(new { friends = friends });
             }
             catch (MySqlException ex)
             {

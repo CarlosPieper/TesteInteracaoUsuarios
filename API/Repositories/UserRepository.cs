@@ -79,7 +79,7 @@ namespace EmagrecerSocial.API.Repositories
         {
             connection.Open();
             List<User> users = new List<User>();
-            string sql = @"SELECT U.* FROM FRIENDS F INNER JOIN USERS U ON (F.USER = U.ID) WHERE F.USER = ?";
+            string sql = @"SELECT U.* FROM FRIENDS F INNER JOIN USERS U ON (F.FRIEND = U.ID) WHERE F.USER = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add("@USER", MySqlDbType.String).Value = id;
