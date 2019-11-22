@@ -106,6 +106,7 @@ class Profile extends Component {
         this.setState({ registrationDate: data.user.registrationDate.toString().substr(0, 10) });
         this.setState({ password: "" });
         this.setState({ confirmPassword: "" });
+        console.log(data);
     }
 
     GetForums() {
@@ -136,8 +137,6 @@ class Profile extends Component {
             alert("Nome é obrigatório!")
         }
         else {
-            setTimeout(() => { this.PostProfilePic() }, 100);
-            setTimeout(() => { this.PostCoverPic() }, 100);
             var formData = new FormData();
             formData.append("Email", this.state.email);
             formData.append("Password", this.state.password);
@@ -215,7 +214,6 @@ class Profile extends Component {
     }
 
     saveCoverPic(e) {
-        console.log(e);
         let files = e.target.files;
         this.coverPic = files[0];
     }
@@ -245,7 +243,7 @@ class Profile extends Component {
                         <div className="col l2">
                         </div>
                         <div className="col l8 s9">
-                            <div className="card large card forum" style={{height: 620}}>
+                            <div className="card large card forum" style={{ height: 620 }}>
                                 <div className="card-image">
                                     <img className="materialboxed" src={self.coverPic} />
                                     <div className=" ftPerfil" overflow="hidden">
@@ -382,8 +380,12 @@ class Profile extends Component {
                             </div>
                             <div className="modal-footer">
                                 <div className="row col s12">
-                                    <a className="waves-effect waves-light btn red" onClick={this.toggleModal} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
-                                    <a className="waves-effect waves-light btn green" onClick={() => { this.UpdateUser() }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</a>
+                                    <a className="waves-effect waves-light btn red" onClick={()=> {this.GetUserInfo(); this.toggleModal()}} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
+                                    <a className="waves-effect waves-light btn green" onClick={() => {
+                                        setTimeout(() => { this.PostProfilePic() }, 10);
+                                        setTimeout(() => { this.PostCoverPic() }, 10);
+                                        setTimeout(() => { this.UpdateUser() }, 1000);
+                                    }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</a>
                                 </div>
                             </div>
                         </div>
