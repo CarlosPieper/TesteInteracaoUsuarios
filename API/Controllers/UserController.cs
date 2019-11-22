@@ -88,16 +88,14 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Edit")]
         [HttpPost]
-        public ActionResult Edit(User user, int id)
+        public ActionResult Edit(User user)
         {
-            user.Id = id;
             user.Password = Cryptography.EncryptPassword(user.Password);
             user.Cpf = " ";
             if (user.ProfilePic == "" || user.ProfilePic == null)
                 user.ProfilePic = UtilitiesRepository.profilePic;
             if (user.CoverPic == "" || user.CoverPic == null)
                 user.CoverPic = UtilitiesRepository.coverPic;
-
             try
             {
                 repository.Edit(user);
@@ -170,7 +168,7 @@ namespace EmagrecerSocial.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [ActionName("RecoverPassword")]
         public ActionResult RecoverPassword(string email)
         {

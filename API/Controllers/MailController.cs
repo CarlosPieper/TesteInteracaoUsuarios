@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 namespace EmagrecerSocial.API.Controllers
 {
-    public class MailController : Controller
+    public class MailController
     {
         public static void SendEmailRecovery(string adress, string newPassword)
         {
@@ -23,7 +23,7 @@ namespace EmagrecerSocial.API.Controllers
             mail.To.Add(adress);
             mail.From = new MailAddress("clebanca@gmail.com");
             mail.Subject = "Recuperação de senha do Emagrecer Social";
-            string Body = @"Sua senha foi alterada, agora é: " + newPassword + @". <br> 
+            string Body = @"Sua senha foi alterada, agora é: " + newPassword + @"<br> 
             Se você quiser, pode ir na sua edição de perfil e alterá-la.";
             mail.Body = Body;
             mail.IsBodyHtml = true;

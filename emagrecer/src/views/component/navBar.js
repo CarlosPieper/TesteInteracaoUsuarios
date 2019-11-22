@@ -36,7 +36,6 @@ class MyNav extends Component {
                   <div className="col s12 ">
                     <div id="topbarsearch">
                       <div className="input-field col s6 s12 white-text">
-                        <i onClick={this.GetUsersByName} className="white-text material-icons prefix">search</i>
                         <input name="name" type="text" placeholder="Pesquisar" id="autocomplete-input"
                           className="autocomplete white-text" onKeyDown={this.goToProfile} onChange={this.changeHandler} />
                       </div>

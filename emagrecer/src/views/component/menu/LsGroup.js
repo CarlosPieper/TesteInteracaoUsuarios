@@ -1,5 +1,10 @@
+/*
+
+PROVAVELMENTE NÃO SERÁ USADA
+
 import React, { Component } from 'react';
 class LsGroup extends Component {
+
   render() {
     return (
       <ul className="collection  avatar"  >
@@ -36,4 +41,4 @@ class LsGroup extends Component {
   }
 }
 
-export default LsGroup;
+export default LsGroup;*/

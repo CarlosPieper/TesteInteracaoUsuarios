@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import NewForum from './newForum';
 import Pnav from './pNav';
 import Friends from '../friends'
-import LsGroup from './LsGroup';
-import NewGroup from './newGroup';
+//import NewGroup from './newGroup';
 class MySide extends Component {
   render() {
     return (
