@@ -7,6 +7,7 @@ import Register from "./views/register";
 import Login from "./views/login";
 import Feed from "./views/feed";
 import Profile from "./views/profile";
+import Solicitations from "./views/solicitations";
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
@@ -24,6 +25,7 @@ const Routes = () => (
             <Route path="/cadastro" component={Register} />
             <PrivateRoute path="/usuarios/:name" component={UserList} />
             <PrivateRoute path="/feed" component={Feed} />
+            <PrivateRoute path="/solicitacoes" component={Solicitations} />
             <PrivateRoute path="/perfil/:id" component={Profile} />
         </Switch>
     </BrowserRouter>

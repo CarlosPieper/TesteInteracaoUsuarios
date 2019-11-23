@@ -53,6 +53,21 @@ namespace EmagrecerSocial.API.Controllers
             }
         }
 
+        [ActionName("GetSolicitations")]
+        [HttpGet]
+        public ActionResult GetSolicitations(int id)
+        {
+            try
+            {
+                List<FriendRequest> requests = repository.ListFriendRequests(id);
+                return Ok(new { requests = requests });
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+
         [ActionName("Invite")]
         [HttpPost]
         public ActionResult Invite(int idLogged, int id)
