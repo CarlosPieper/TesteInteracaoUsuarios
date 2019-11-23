@@ -4,22 +4,35 @@ import { getId } from '../../services/auth';
 class Post extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      posts: [{
+          author: null,
+          authorName: "",
+          id: 0,
+          picture: "",
+          text: "",
+          title: ""
+      }],
+  }
     setTimeout(() => { this.getPosts(); }, 1000);
 
   }
 
   getPosts() {
+    var self = this;
     let queryString = new URLSearchParams();
     queryString.append("id", getId());
     fetch('https://localhost:5001/Forum/ListForums?' + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
-          console.log(data);
+          self.setState({ posts: data.forums });
+          console.log(self.state.posts);
         });
       });
   }
 
   render() {
+    var self = this;
     return (
       <div className="row">
         <div className="col l3">
@@ -28,12 +41,11 @@ class Post extends Component {
           <div className="card small forum">
             <a className="text" href="post.html">
               <div className="card-image">
-                <img src="https://i0.wp.com/www.wallpapermaiden.com/wallpaper/6063/download/1920x1080/nissan-skyline-gt-r-back-view-sport-cars-white.png" />
-                <span className="card-title">Card Title</span>
+                <img src={self.state.posts.picture} />
+                <span className="card-title">{self.state.posts.title}</span>
               </div>
               <div className="card-content">
-                <p >I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+                <p >{self.state.posts.text}</p>
               </div>
             </a>
           </div>
