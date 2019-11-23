@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MyNav from './component/navBar';
 import { getId } from '../services/auth';
 import Modal from 'react-modal';
-
+import MyNav from './component/navBar';
+import MySide from './component/menu/MySide';
 const customStyles = {
     content: {
         top: '50%',
@@ -121,8 +121,6 @@ class Profile extends Component {
             .then(function (response) {
                 response.json().then(function (data) {
                     self.setState({ posts: data.forums });
-                    self.register = self.state.registrationDate.toString().substr(0, 10);
-                    self.birth = self.state.birthDate.toString().substr(0, 10);
                 });
             })
             .catch(function (err) {
@@ -307,8 +305,9 @@ class Profile extends Component {
             return (
                 <div>
                     <MyNav />
+                    <MySide />
                     <div className="row">
-                        <div className="col l2">
+                        <div className="col l3">
                         </div>
                         <div className="col l8 s9">
                             <div className="card large card forum" style={{ height: 620 }}>
@@ -337,26 +336,33 @@ class Profile extends Component {
                     </div>
                     <div>
                         <div className="row">
-                            <div className="col l3"></div>
+                            <div className="col l4"></div>
                             <div className="col l6 s11">
                                 <h5>Publicações</h5>
                             </div>
-                            <div className="col l3"></div>
+                            <div className="col l4"></div>
                         </div>
                         <div className="row">
-                            <div className="col l3"></div>
+                            <div className="col l4"></div>
                             <div className="col l6 s11">
-                                <div className="card small forum">
-                                    <a className="text" href="post.html">
-                                        <div className="card-image">
-                                            <img src="https://i0.wp.com/www.wallpapermaiden.com/wallpaper/6063/download/1920x1080/nissan-skyline-gt-r-back-view-sport-cars-white.png" />
-                                            <span className="card-title">Card Title</span>
+                                {self.state.posts.map(function (post) {
+                                    if (post.picture == "" || post.picture == " ") {
+                                        post.picture = "/images/default.PNG";
+                                    }
+                                    return (
+                                        <div className="card small forum" key={post.id}>
+                                            <a className="text" onClick={self.goToForum}>
+                                                <div className="card-image">
+                                                    <img src={post.picture} />
+                                                </div>
+                                                <span style={{ marginLeft: 25 }} className="card-title">{post.title}</span>
+                                                <div className="card-content">
+                                                    <p>{post.text}</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div className="card-content">
-                                            <p >I am a very simple card. I am good at containing small bits of information.I am convenient because I require little markup to use effectively.</p>
-                                        </div>
-                                    </a>
-                                </div>
+                                    );
+                                })}
                             </div>
                             <div className="col l3"></div>
                         </div>

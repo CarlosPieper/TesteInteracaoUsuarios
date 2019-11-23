@@ -64,8 +64,8 @@ code {
   background: #555; 
 }
 .avatar{
-    margin-right: 10px;
-    
+    margin-left: 4px;
+    margin-right: 5px;
 }
 .pa{
     height: 40%;
@@ -148,7 +148,9 @@ h5{
 .name{
   float: initial;
   position: absolute;
-  bottom: 50%
+  bottom: 40%;
+  margin-left: 10px;
+  font-size: 20px;
 }
 .fade{
   position:absolute;  

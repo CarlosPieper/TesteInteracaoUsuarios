@@ -56,7 +56,7 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 List<ForumComment> forumComments = repository.ListForumComments(forum);
-                return Ok(forumComments);
+                return Ok(new {forumComments = forumComments});
             }
             catch (MySqlException ex)
             {

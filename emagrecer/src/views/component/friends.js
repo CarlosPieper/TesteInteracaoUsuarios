@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getId } from '../../services/auth';
+
 class Friends extends Component {
   constructor(props) {
     super(props);
@@ -38,118 +39,19 @@ class Friends extends Component {
       });
   }
   render() {
+    var self = this;
     return (
       <div>
         <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
+          <ul className="collection avatar" >
+            {self.state.friends.map(function (friend) {
+              return (
+                <li className="collection-item" key={friend.id}>
+                  <span><img src={friend.profilePic} className="circle ImgGp" /> </span>
+                  <span className="name">{friend.name}</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
