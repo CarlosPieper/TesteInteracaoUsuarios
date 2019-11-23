@@ -19,9 +19,9 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "INSERT INTO FORUM_COMMENTS (FORUM, COMMENT_TEXT, AUTHOR) VALUES (?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@FORUM", MySqlDbType.Int32).Value = forumComment.Forum;
-                command.Parameters.Add("@COMMENT_TEXT", MySqlDbType.String).Value = forumComment.Text;
-                command.Parameters.Add("@AUTHOR", MySqlDbType.Int32).Value = forumComment.Author;
+                command.Parameters.Add(@"FORUM", MySqlDbType.Int32).Value = forumComment.Forum;
+                command.Parameters.Add(@"COMMENT_TEXT", MySqlDbType.String).Value = forumComment.Text;
+                command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = forumComment.Author;
                 command.ExecuteNonQuery();
             }
             connection.Close();
@@ -35,7 +35,7 @@ namespace EmagrecerSocial.API.Repositories
             WHERE FORUM = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@ID", MySqlDbType.Int32).Value = forum;
+                command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forum;
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -60,8 +60,8 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "UPDATE FORUM_COMMENTS SET COMMENT_TEXT = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@COMMENT_TEXT", MySqlDbType.String).Value = forumComment.Text;
-                command.Parameters.Add("@ID", MySqlDbType.Int32).Value = forumComment.Id;
+                command.Parameters.Add(@"COMMENT_TEXT", MySqlDbType.String).Value = forumComment.Text;
+                command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forumComment.Id;
                 command.ExecuteNonQuery();
             }
             connection.Close();

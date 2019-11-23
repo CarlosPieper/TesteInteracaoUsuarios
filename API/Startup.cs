@@ -43,6 +43,8 @@ namespace api
             services.AddSingleton<IForumCommentRepository, ForumCommentRepository>();
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddSingleton<IUtilitiesRepository, UtilitiesRepository>();
+            services.AddSingleton<IFriendsRequestRepository, FriendsRequestRepository>();
+            services.AddSingleton<IFriendsRepository, FriendsRepository>();
             services.AddSingleton<UserController>();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
