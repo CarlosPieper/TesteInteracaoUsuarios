@@ -120,6 +120,38 @@ class Friends extends Component {
             </li>
           </ul>
         </div>
+        <div>
+          <ul className="collection  avatar"  >
+            <li className="collection-item ">
+              <img src="user.png" className="circle ImgGp" />
+              <span className="title">Nando</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul className="collection  avatar"  >
+            <li className="collection-item ">
+              <img src="user.png" className="circle ImgGp" />
+              <span className="title">Nando</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul className="collection  avatar"  >
+            <li className="collection-item ">
+              <img src="user.png" className="circle ImgGp" />
+              <span className="title">Nando</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul className="collection  avatar"  >
+            <li className="collection-item ">
+              <img src="user.png" className="circle ImgGp" />
+              <span className="title">Nando</span>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }

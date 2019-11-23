@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getId } from '../services/auth';
-
+import MyNav from './component/navBar';
+import MySide from './component/menu/MySide';
 class Solicitations extends Component {
     constructor(props) {
         super(props);
@@ -25,6 +26,8 @@ class Solicitations extends Component {
     render() {
         return (
             <div>
+                <MyNav />
+                <MySide />
             </div>
         );
     }

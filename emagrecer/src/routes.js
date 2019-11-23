@@ -8,6 +8,7 @@ import Login from "./views/login";
 import Feed from "./views/feed";
 import Profile from "./views/profile";
 import Solicitations from "./views/solicitations";
+import Chat from "./views/chat";
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
@@ -27,6 +28,7 @@ const Routes = () => (
             <PrivateRoute path="/feed" component={Feed} />
             <PrivateRoute path="/solicitacoes" component={Solicitations} />
             <PrivateRoute path="/perfil/:id" component={Profile} />
+            <PrivateRoute path="/mensagens" component={Chat} />
         </Switch>
     </BrowserRouter>
 );
