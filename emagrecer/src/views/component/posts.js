@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getId } from '../../services/auth';
 
 class Post extends Component {
+  authors="";  
   constructor(props) {
     super(props);
     this.state = {
@@ -22,17 +23,19 @@ class Post extends Component {
     var self = this;
     let queryString = new URLSearchParams();
     queryString.append("id", getId());
-    fetch('https://localhost:5001/Forum/ListForums?' + queryString, { headers: { 'Content-Type': 'application/json' } })
+        fetch("https://localhost:5001/Forum/ListUserForums?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
-          self.setState({ posts: data.forums });
-          console.log(self.state.posts);
+          self.setState({ Mp: data.author });
+          console.log(self.Mp);
         });
       });
+      
   }
 
   render() {
     var self = this;
+    //é us guri e não tem jeito
     return (
       <div className="row">
         <div className="col l3">
@@ -41,11 +44,11 @@ class Post extends Component {
           <div className="card small forum">
             <a className="text" href="post.html">
               <div className="card-image">
-                <img src={self.state.posts.picture} />
-                <span className="card-title">{self.state.posts.title}</span>
+                <img  />
+                <span className="card-title"></span>
               </div>
               <div className="card-content">
-                <p >{self.state.posts.text}</p>
+                <p ></p>
               </div>
             </a>
           </div>

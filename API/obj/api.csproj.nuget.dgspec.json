@@ -10,21 +10,19 @@
         "projectUniqueName": "C:\\EmagrecerSocial\\api\\api.csproj",
         "projectName": "api",
         "projectPath": "C:\\EmagrecerSocial\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\Carlos\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\evand\\.nuget\\packages\\",
         "outputPath": "C:\\EmagrecerSocial\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Carlos\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\evand\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
