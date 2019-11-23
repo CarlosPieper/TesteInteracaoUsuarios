@@ -45,6 +45,31 @@ namespace EmagrecerSocial.API.Repositories
             connection.Close();
         }
 
+        public List<FriendRequest> ListFriendRequests(int idLogged)
+        {
+            List<FriendRequest> listRequests = new List<FriendRequest>();
+            string sql = @"SELECT F.REQUESTER, U.NAME, U.PROFILE_PIC FROM FRIENDS_REQUEST F INNER JOIN USERS U 
+            ON (F.REQUESTER = U.ID) WHERE RECEIVER = ?;";
+            connection.Open();
+            using (MySqlCommand command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.Add(@"RECEIVER", MySqlDbType.Int32).Value = idLogged;
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        FriendRequest req = new FriendRequest();
+                        req.Requester = reader.GetInt32("REQUESTER");
+                        req.RequesterName = reader.GetString("NAME");
+                        req.RequesterPicture = reader.GetString("PROFILE_PIC");
+                        listRequests.Add(req);
+                    }
+                }
+            }
+            connection.Close();
+            return listRequests;
+        }
+
         public bool VerifyFriendRequest(int idLogged, int id)
         {
             var contagem = 0;

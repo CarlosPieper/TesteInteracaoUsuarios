@@ -35,6 +35,7 @@ class Post extends Component {
 
   render() {
     var self = this;
+    //é us guri e não tem jeito
     return (
       <div className="row">
         <div className="col l3">
