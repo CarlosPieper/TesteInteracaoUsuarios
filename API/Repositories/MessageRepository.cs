@@ -19,7 +19,7 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "DELETE FROM MESSAGES WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@ID", MySqlDbType.String).Value = id;
+                command.Parameters.Add(@"ID", MySqlDbType.String).Value = id;
                 command.ExecuteNonQuery();
             }
             connection.Close();
@@ -31,9 +31,9 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "INSERT INTO MESSAGES (TEXT, SENDER, RECEIVER) VALUES (?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@TEXT", MySqlDbType.String).Value = message.Text;
-                command.Parameters.Add("@SENDER", MySqlDbType.String).Value = message.MessageSender;
-                command.Parameters.Add("@RECEIVER", MySqlDbType.String).Value = message.MessageReceiver;
+                command.Parameters.Add(@"TEXT", MySqlDbType.String).Value = message.Text;
+                command.Parameters.Add(@"SENDER", MySqlDbType.String).Value = message.MessageSender;
+                command.Parameters.Add(@"RECEIVER", MySqlDbType.String).Value = message.MessageReceiver;
                 command.ExecuteNonQuery();
             }
             connection.Close();

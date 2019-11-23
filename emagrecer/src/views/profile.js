@@ -18,6 +18,8 @@ const customStyles = {
 
 class Profile extends Component {
     id;
+    usersAreFriends = null;
+    userInvited = null;
     register = '';
     birth = '';
     birthDate = "";
@@ -93,6 +95,8 @@ class Profile extends Component {
         this.name = data.user.name;
         this.profilePic = data.user.profilePic;
         this.registrationDate = data.user.registrationDate.toString().substr(0, 10);
+        this.usersAreFriends = data.usersAreFriends;
+        this.userInvited = data.userInvited;
         this.setState({ canEdit: data.canEdit });
         this.setState({ birthDate: data.user.birthDate.toString().substr(0, 10) });
         this.setState({ city: data.user.city });
@@ -199,12 +203,76 @@ class Profile extends Component {
             )
         }
         else {
-            return (
-                <div>
-                    <a className="btn modal-trigger blue darken-3"><i className="material-icons left">group</i>Convidar</a>
-                </div>
-            )
+            if (!this.usersAreFriends) {
+                if (!this.userInvited) {
+                    return (
+                        <div>
+                            <a className="btn blue darken-3" onClick={this.invite}><i className="material-icons left">person_add</i>Convidar</a>
+                        </div>
+                    )
+                }
+                return (
+                    <div>
+                        <a className="btn blue darken-3" onClick={this.cancelInvite}><i className="material-icons left">cancel</i>Cancelar convite</a>
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <a className="btn blue darken-3" onClick={this.removeFriend}><i className="material-icons left">remove_circle</i>Remover Amigo</a>
+                    </div>
+                )
+            }
+
         }
+    }
+
+    removeFriend = () => {
+        var self = this;
+        var formData = new FormData();
+        formData.append("idLogged", getId());
+        formData.append("id", this.id);
+        const options = {
+            method: 'POST',
+            body: formData,
+        }
+        const request = new Request('https://localhost:5001/Friends/RemoveFriend', options);
+        fetch(request).then(function (response) {
+            setTimeout(() => { self.GetUserInfo(); }, 100);
+        });
+    }
+
+    cancelInvite = () => {
+        var self = this;
+        var formData = new FormData();
+        formData.append("idLogged", getId());
+        formData.append("id", this.id);
+        const options = {
+            method: 'POST',
+            body: formData,
+        }
+        const request = new Request('https://localhost:5001/FriendsRequest/RemoveFriendRequest', options);
+        fetch(request).then(function (response) {
+            setTimeout(() => { self.GetUserInfo(); }, 100);
+        });
+    }
+
+    invite = () => {
+        var self = this;
+        var formData = new FormData();
+        formData.append("idLogged", getId());
+        formData.append("id", this.id);
+        const options = {
+            method: 'POST',
+            body: formData,
+        }
+        const request = new Request('https://localhost:5001/FriendsRequest/Invite', options);
+        fetch(request).then(function (response) {
+            setTimeout(() => { self.GetUserInfo(); }, 100);
+        })
+            .catch(function (err) {
+                alert("Você só pode convidar um usuário uma vez!")
+            });
     }
 
     toggleModal = () => {
@@ -380,7 +448,7 @@ class Profile extends Component {
                             </div>
                             <div className="modal-footer">
                                 <div className="row col s12">
-                                    <a className="waves-effect waves-light btn red" onClick={()=> {this.GetUserInfo(); this.toggleModal()}} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
+                                    <a className="waves-effect waves-light btn red" onClick={() => { this.GetUserInfo(); this.toggleModal() }} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
                                     <a className="waves-effect waves-light btn green" onClick={() => {
                                         setTimeout(() => { this.PostProfilePic() }, 10);
                                         setTimeout(() => { this.PostCoverPic() }, 10);

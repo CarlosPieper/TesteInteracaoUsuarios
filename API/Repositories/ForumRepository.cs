@@ -19,7 +19,7 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "DELETE FROM FORUMS WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@Id", MySqlDbType.String).Value = id;
+                command.Parameters.Add(@"Id", MySqlDbType.String).Value = id;
                 command.ExecuteNonQuery();
             }
             connection.Close();
@@ -31,10 +31,10 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "INSERT INTO FORUMS (TITLE, TEXT, AUTHOR, PICTURE) VALUES (?, ?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@TITLE", MySqlDbType.String).Value = forum.Title;
-                command.Parameters.Add("@TEXT", MySqlDbType.String).Value = forum.Text;
-                command.Parameters.Add("@AUTHOR", MySqlDbType.Int32).Value = forum.Author;
-                command.Parameters.Add("@PICTURE", MySqlDbType.String).Value = forum.Picture;
+                command.Parameters.Add(@"TITLE", MySqlDbType.String).Value = forum.Title;
+                command.Parameters.Add(@"TEXT", MySqlDbType.String).Value = forum.Text;
+                command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = forum.Author;
+                command.Parameters.Add(@"PICTURE", MySqlDbType.String).Value = forum.Picture;
                 command.ExecuteNonQuery();
             }
             connection.Close();
@@ -48,8 +48,8 @@ namespace EmagrecerSocial.API.Repositories
             INNER JOIN FRIENDS FR ON (F.AUTHOR = FR.FRIEND) WHERE FR.USER = ? OR FR.FRIEND = ? ORDER BY F.ID DESC;";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@USER", MySqlDbType.String).Value = user;
-                command.Parameters.Add("@FRIEND", MySqlDbType.String).Value = user;
+                command.Parameters.Add(@"USER", MySqlDbType.String).Value = user;
+                command.Parameters.Add(@"FRIEND", MySqlDbType.String).Value = user;
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -76,10 +76,10 @@ namespace EmagrecerSocial.API.Repositories
             string sql = "UPDATE FORUMS SET TITLE = ?, TEXT = ?, AUTHOR = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
-                command.Parameters.Add("@TITLE", MySqlDbType.String).Value = forum.Title;
-                command.Parameters.Add("@TEXT", MySqlDbType.String).Value = forum.Text;
-                command.Parameters.Add("@AUTHOR", MySqlDbType.Int32).Value = forum.Author;
-                command.Parameters.Add("@ID", MySqlDbType.Int32).Value = forum.Id;
+                command.Parameters.Add(@"TITLE", MySqlDbType.String).Value = forum.Title;
+                command.Parameters.Add(@"TEXT", MySqlDbType.String).Value = forum.Text;
+                command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = forum.Author;
+                command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forum.Id;
                 command.ExecuteNonQuery();
             }
             connection.Close();

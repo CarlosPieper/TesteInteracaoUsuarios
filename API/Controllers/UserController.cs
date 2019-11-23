@@ -21,11 +21,16 @@ namespace EmagrecerSocial.API.Controllers
         private IUserRepository repository;
         private readonly ApplicationSettings appSettings;
         IUtilitiesRepository utilities;
-        public UserController(IUserRepository _repository, IOptions<ApplicationSettings> _appSettings, IUtilitiesRepository _utilities)
+        IFriendsRepository friendsRepository;
+        IFriendsRequestRepository requestRepository;
+        public UserController(IUserRepository _repository, IOptions<ApplicationSettings> _appSettings,
+        IUtilitiesRepository _utilities, IFriendsRepository _friendsRepository, IFriendsRequestRepository _requestRepository)
         {
             this.repository = _repository;
             this.appSettings = _appSettings.Value;
             this.utilities = _utilities;
+            this.friendsRepository = _friendsRepository;
+            this.requestRepository = _requestRepository;
         }
 
         [ActionName("Register")]
@@ -139,20 +144,6 @@ namespace EmagrecerSocial.API.Controllers
             }
         }
 
-        [ActionName("ListFriends")]
-        [HttpGet]
-        public ActionResult ListFriends(int id)
-        {
-            try
-            {
-                List<User> friends = repository.ListFriends(id);
-                return Ok(new { friends = friends });
-            }
-            catch (MySqlException ex)
-            {
-                throw ex;
-            }
-        }
         [HttpGet]
         [ActionName("GetUserData")]
         public ActionResult GetUserData(int idLogged, int id = 0)
@@ -166,7 +157,16 @@ namespace EmagrecerSocial.API.Controllers
             }
             else
             {
-                return Ok(new { user = repository.SearchById(id) });
+                bool usersAreFriends = friendsRepository.VerifyFriendship(idLogged, id);
+                bool userInvited = true;
+                if (!usersAreFriends)
+                    userInvited = requestRepository.VerifyFriendRequest(idLogged, id);
+                return Ok(new
+                {
+                    user = repository.SearchById(id),
+                    usersAreFriends = usersAreFriends,
+                    userInvited = userInvited
+                });
             }
         }
 

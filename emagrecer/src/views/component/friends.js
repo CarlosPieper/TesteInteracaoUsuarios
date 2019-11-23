@@ -25,7 +25,7 @@ class Friends extends Component {
     var self = this;
     let queryString = new URLSearchParams();
     queryString.append("id", getId());
-    fetch("https://localhost:5001/User/ListFriends?" + queryString, { headers: { 'Content-Type': 'application/json' } })
+    fetch("https://localhost:5001/Friends/ListFriends?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
           self.setState({ friends: data.friends });
