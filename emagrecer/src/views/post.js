@@ -25,7 +25,7 @@ class Post extends Component {
         }
     }
     componentWillMount() {
-        this.getPost();
+        setTimeout(() => { this.getPost() }, 100);
     }
     getPost() {
         var self = this;
@@ -59,8 +59,8 @@ class Post extends Component {
     }
     render() {
         var self = this;
-        if(this.state.post.picture == "" || this.state.post.picture == " ")
-        this.state.post.picture = "/images/default.PNG";
+        if (this.state.post.picture == "" || this.state.post.picture == " ")
+            this.state.post.picture = "/images/default.PNG";
         return (
             <div>
                 <MyNav />
@@ -70,7 +70,7 @@ class Post extends Component {
                     <div className="col l8 s9">
                         <div className="card medium card forum">
                             <div className="card-image">
-                                <img className="materialboxed" src={self.state.post.picture} />
+                                <img src={self.state.post.picture} />
                             </div>
                             <div className="card-title" style={{ marginLeft: 25 }}>
                                 <span>{self.state.post.title}</span>

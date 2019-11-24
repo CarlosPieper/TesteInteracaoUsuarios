@@ -22,7 +22,7 @@ class Posts extends Component {
     var self = this;
     let queryString = new URLSearchParams();
     queryString.append("id", getId());
-    fetch("https://localhost:5001/Forum/ListUserForums?" + queryString, { headers: { 'Content-Type': 'application/json' } })
+    fetch("https://localhost:5001/Forum/ListForums?" + queryString, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
         response.json().then(function (data) {
           self.setState({ posts: data.forums });

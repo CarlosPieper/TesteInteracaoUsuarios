@@ -18,7 +18,7 @@ namespace EmagrecerSocial.API.Repositories
 
         public void ChangePassword(string password, string email)
         {
-            connection.Open();
+
             string sql = @"UPDATE USERS SET PASSWORD = ? WHERE EMAIL = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -26,12 +26,12 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"EMAIL", MySqlDbType.String).Value = email;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public void Edit(User user)
         {
-            connection.Open();
+       
             string sql = @"UPDATE USERS SET NAME = ?, PASSWORD = ?, BIRTH_DATE = ?, GENRE = ?, 
             EMAIL = ?, CPF = ?, CITY = ?, DESCRIPTION = ?, PROFILE_PIC = ?, COVER_PIC = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -49,12 +49,12 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = user.Id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public void Include(User user)
         {
-            connection.Open();
+       
             string sql = @"INSERT INTO USERS (NAME, PASSWORD, REGISTRATION_DATE, BIRTH_DATE, GENRE, EMAIL, CPF, CITY, DESCRIPTION, PROFILE_PIC, COVER_PIC) 
             VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -72,14 +72,13 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"COVER_PIC", MySqlDbType.String).Value = " ";
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public User Login(string email, string password)
         {
             User user = new User();
             string sql = @"SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
-            connection.Open();
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"EMAIL", MySqlDbType.String).Value = email;
@@ -103,7 +102,6 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
             return user;
         }
 
@@ -111,7 +109,7 @@ namespace EmagrecerSocial.API.Repositories
         {
             List<User> users = new List<User>();
             string sql = @"SELECT * FROM USERS WHERE NAME LIKE ?";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"NAME", MySqlDbType.String).Value = "%" + name + "%";
@@ -136,13 +134,13 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return users;
         }
 
         public User SearchById(int id)
         {
-            connection.Open();
+       
             User user = new User();
             string sql = @"SELECT * FROM USERS WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -167,7 +165,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return user;
         }
 
@@ -175,7 +173,7 @@ namespace EmagrecerSocial.API.Repositories
         {
             bool temEmail = false;
             string sql = @"SELECT * FROM USERS WHERE EMAIL = ?";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"EMAIL", MySqlDbType.String).Value = email;
@@ -191,7 +189,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return temEmail;
         }
     }

@@ -37,6 +37,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -52,6 +53,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -71,10 +73,11 @@ namespace EmagrecerSocial.API.Controllers
                 {
                     forums = repository.GetUserForums(id);
                 }
-                return Ok(forums);
+                return Ok(new { forums = forums });
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -90,6 +93,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -105,6 +109,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
 

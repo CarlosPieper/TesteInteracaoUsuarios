@@ -312,9 +312,9 @@ class Profile extends Component {
                         <div className="col l8 s9">
                             <div className="card large card forum" style={{ height: 620 }}>
                                 <div className="card-image">
-                                    <img className="materialboxed" src={self.coverPic} />
+                                    <img src={self.coverPic} />
                                     <div className=" ftPerfil" overflow="hidden">
-                                        <img className="materialboxed" src={self.profilePic} />
+                                        <img src={self.profilePic} />
                                         <div className="nPerfil">
                                             <span>{self.name}</span>
                                         </div>

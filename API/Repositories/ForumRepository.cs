@@ -15,19 +15,19 @@ namespace EmagrecerSocial.API.Repositories
 
         public void Delete(int id)
         {
-            connection.Open();
+       
             string sql = "DELETE FROM FORUMS WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"Id", MySqlDbType.String).Value = id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public void Include(Forum forum)
         {
-            connection.Open();
+       
             string sql = "INSERT INTO FORUMS (TITLE, TEXT, AUTHOR, PICTURE) VALUES (?, ?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -37,12 +37,12 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"PICTURE", MySqlDbType.String).Value = forum.Picture;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public List<Forum> ListForums(int user)
         {
-            connection.Open();
+       
             List<Forum> forums = new List<Forum>();
             string sql = @"SELECT F.*, U.NAME AS AUTHORNAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) 
             INNER JOIN FRIENDS FR ON (F.AUTHOR = FR.FRIEND) WHERE FR.USER = ? OR FR.FRIEND = ? ORDER BY F.ID DESC;";
@@ -65,14 +65,14 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return forums;
         }
 
 
         public void Modify(Forum forum) //ainda não sei se isso vai ser mantido
         {
-            connection.Open();
+       
             string sql = "UPDATE FORUMS SET TITLE = ?, TEXT = ?, AUTHOR = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -82,12 +82,12 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forum.Id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public Forum SearchById(int id)
         {
-            connection.Open();
+       
             Forum forum = new Forum();
             string sql = "SELECT F.*, U.NAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE F.ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -106,7 +106,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return forum;
         }
 
@@ -114,7 +114,7 @@ namespace EmagrecerSocial.API.Repositories
         {
             List<Forum> forums = new List<Forum>();
             string sql = "SELECT F.*, U.NAME AS AUTHORNAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = user;
@@ -133,14 +133,14 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return forums;
         }
 
         public bool UserHasFriends(int user)
         {
             var contagem = 0;
-            connection.Open();
+       
             string sql = "SELECT count(*) AS CONTAGEM FROM FRIENDS WHERE USER = ? OR FRIEND = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -154,7 +154,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return contagem > 0;
         }
     }

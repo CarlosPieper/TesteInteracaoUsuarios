@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
 using EmagrecerSocial.API.Interfaces;
 using EmagrecerSocial.API.Models;
-using EmagrecerSocial.API.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
@@ -34,6 +29,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+                
                 throw ex;
             }
         }
@@ -49,13 +45,14 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+                
                 throw ex;
             }
         }
 
-        [ActionName("GetSolicitations")]
+        [ActionName("GetFriendRequests")]
         [HttpGet]
-        public ActionResult GetSolicitations(int id)
+        public ActionResult GetFriendRequests(int id)
         {
             try
             {
@@ -64,6 +61,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+                
                 throw ex;
             }
         }
@@ -79,6 +77,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+                
                 throw ex;
             }
         }
