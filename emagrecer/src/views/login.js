@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { login, isAuthenticated, setId } from '../services/auth';
 import Modal from 'react-modal';
-import * as signalR from '@aspnet/signalr';
-
-window.addEventListener('beforeunload', ev => {
-  this.hubConnection
-    .invoke('OnDisconnectedAsync')
-    .catch(err => console.error(err));
-  Modal.setAppElement('body');
-})
 
 const customStyles = {
   content: {
@@ -37,14 +29,6 @@ class Login extends Component {
     }
   }
   UNSAFE_componentWillMount() {
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:5000/chatHub")
-      .configureLogging(signalR.LogLevel.Information)
-      .build();
-    this.hubConnection.start().then(function () { });
-    this.hubConnection
-      .invoke('OnConnectedAsync')
-      .catch(err => console.error(err));
     Modal.setAppElement('body');
   }
   changeHandler = e => {

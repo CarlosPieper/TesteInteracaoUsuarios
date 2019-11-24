@@ -10,6 +10,7 @@ import Profile from "./views/profile";
 import FriendRequests from "./views/friendRequests";
 import Chat from "./views/chat";
 import Post from './views/post'
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}

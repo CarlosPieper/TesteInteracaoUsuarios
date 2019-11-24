@@ -21,7 +21,7 @@ class Friends extends Component {
         registrationDate: "",
       }]
     }
-    setTimeout(() => { this.getUserFriends(); }, 100);
+    setTimeout(() => { this.getUserFriends(); }, 500);
   }
 
 

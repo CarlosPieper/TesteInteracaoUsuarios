@@ -69,48 +69,57 @@ class FriendRequests extends Component {
 
     render() {
         var self = this;
-        return (
-            <div>
-                <MyNav />
-                <MySide />
-                <div className="row">
-                    <div className="col l3">
-                    </div>
-                    <div className="col l6 s11">
-                        {self.state.requests.map(function (request) {
-                            if (request.requesterPicture == "" || request.requesterPicture == " ") {
-                                request.requesterPicture = "/images/default.PNG";
-                            }
-                            return (
-                                <div>
-                                    <div className="card small" style={{ height: 200 }}>
-                                        <div className="card-content">
-                                            <div key={request.requester}>
-                                                <span>
-                                                    <img src={request.requesterPicture} className="circle ImgGp" />
-                                                </span>
-                                                <span className="name">
-                                                    {request.requesterName}
-                                                </span>
-                                                <div className="card-footer">
+        if (self.state.requests == undefined || self.state.requests == null) {
+            return (
+                <div>
+
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <MyNav />
+                    <MySide />
+                    <div className="row">
+                        <div className="col l3">
+                        </div>
+                        <div className="col l6 s11">
+                            {self.state.requests.map(function (request) {
+                                if (request.requesterPicture == "" || request.requesterPicture == " ") {
+                                    request.requesterPicture = "/images/default.PNG";
+                                }
+                                return (
+                                    <div>
+                                        <div className="card small" style={{ height: 200 }}>
+                                            <div className="card-content">
+                                                <div key={request.requester}>
                                                     <span>
-                                                        <a className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</a>
+                                                        <img src={request.requesterPicture} className="circle ImgGp" />
                                                     </span>
-                                                    <span>
-                                                        <a className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</a>
+                                                    <span className="name">
+                                                        {request.requesterName}
                                                     </span>
+                                                    <div className="card-footer">
+                                                        <span>
+                                                            <a className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</a>
+                                                        </span>
+                                                        <span>
+                                                            <a className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</a>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
+                        <div className="col l3"></div>
                     </div>
-                    <div className="col l3"></div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 export default FriendRequests;
