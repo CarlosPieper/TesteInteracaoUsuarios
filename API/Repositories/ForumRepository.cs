@@ -15,19 +15,18 @@ namespace EmagrecerSocial.API.Repositories
 
         public void Delete(int id)
         {
-       
+
             string sql = "DELETE FROM FORUMS WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"Id", MySqlDbType.String).Value = id;
                 command.ExecuteNonQuery();
             }
-            ;
         }
 
         public void Include(Forum forum)
         {
-       
+
             string sql = "INSERT INTO FORUMS (TITLE, TEXT, AUTHOR, PICTURE) VALUES (?, ?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -37,14 +36,13 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"PICTURE", MySqlDbType.String).Value = forum.Picture;
                 command.ExecuteNonQuery();
             }
-            ;
         }
 
         public List<Forum> ListForums(int user)
         {
-       
+
             List<Forum> forums = new List<Forum>();
-            string sql = @"SELECT F.*, U.NAME AS AUTHORNAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) 
+            string sql = @"SELECT F.*, U.NAME AS AUTHORNAME, U.PROFILE_PIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) 
             INNER JOIN FRIENDS FR ON (F.AUTHOR = FR.FRIEND) WHERE FR.USER = ? OR FR.FRIEND = ? ORDER BY F.ID DESC;";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -61,18 +59,18 @@ namespace EmagrecerSocial.API.Repositories
                         forum.Title = reader.GetString("TITLE");
                         forum.AuthorName = reader.GetString("AUTHORNAME");
                         forum.Picture = reader.GetString("PICTURE");
+                        forum.AuthorPic = reader.GetString("PROFILE_PIC");
                         forums.Add(forum);
                     }
                 }
             }
-            ;
             return forums;
         }
 
 
         public void Modify(Forum forum) //ainda não sei se isso vai ser mantido
         {
-       
+
             string sql = "UPDATE FORUMS SET TITLE = ?, TEXT = ?, AUTHOR = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -82,14 +80,13 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forum.Id;
                 command.ExecuteNonQuery();
             }
-            ;
         }
 
         public Forum SearchById(int id)
         {
-       
+
             Forum forum = new Forum();
-            string sql = "SELECT F.*, U.NAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE F.ID = ?";
+            string sql = "SELECT F.*, U.NAME, U.PROFILEPIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE F.ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = id;
@@ -103,18 +100,18 @@ namespace EmagrecerSocial.API.Repositories
                         forum.Title = reader.GetString("TITLE");
                         forum.AuthorName = reader.GetString("NAME");
                         forum.Picture = reader.GetString("PICTURE");
+                        forum.AuthorPic = reader.GetString("PROFILEPIC");
                     }
                 }
             }
-            ;
             return forum;
         }
 
         public List<Forum> GetUserForums(int user)
         {
             List<Forum> forums = new List<Forum>();
-            string sql = "SELECT F.*, U.NAME AS AUTHORNAME FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
-       
+            string sql = "SELECT F.*, U.NAME AS AUTHORNAME, U.PROFILEPIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
+
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = user;
@@ -129,18 +126,18 @@ namespace EmagrecerSocial.API.Repositories
                         forum.Title = reader.GetString("TITLE");
                         forum.AuthorName = reader.GetString("AUTHORNAME");
                         forum.Picture = reader.GetString("PICTURE");
+                        forum.AuthorPic = reader.GetString("PROFILEPIC");
                         forums.Add(forum);
                     }
                 }
             }
-            ;
             return forums;
         }
 
         public bool UserHasFriends(int user)
         {
             var contagem = 0;
-       
+
             string sql = "SELECT count(*) AS CONTAGEM FROM FRIENDS WHERE USER = ? OR FRIEND = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -154,7 +151,6 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            ;
             return contagem > 0;
         }
     }

@@ -14,7 +14,7 @@ class Posts extends Component {
         title: ""
       }],
     }
-    setTimeout(() => { this.getPosts(); }, 1000);
+    setTimeout(() => { this.getPosts(); }, 50);
 
   }
 
@@ -28,9 +28,9 @@ class Posts extends Component {
           self.setState({ posts: data.forums });
         });
       });
-
   }
-  goToForum(id){
+
+  goToForum(id) {
     this.props.history.push(`/post/${id}`)
   }
 

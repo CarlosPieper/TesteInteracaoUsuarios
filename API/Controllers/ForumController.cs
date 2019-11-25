@@ -24,10 +24,9 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Include")]
         [HttpPost]
-        public ActionResult Include(Forum forum, int id)
+        public ActionResult Include(Forum forum)
         {
             forum.Picture = UtilitiesRepository.filePath;
-            forum.Author = id;
             if (forum.Picture == null)
                 forum.Picture = " ";
             try

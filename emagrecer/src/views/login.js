@@ -64,7 +64,7 @@ class Login extends Component {
         });
       })
       .catch(function (err) {
-        alert("Erro!");
+        
       });
   }
 
@@ -83,7 +83,7 @@ class Login extends Component {
         alert("E-mail enviado! Entre no seu e-mail para ver seu código de acesso!");
       })
       .catch(function (err) {
-        alert("Erro!");
+        
       });
   }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MyNav from './component/navBar';
 import MySide from './component/menu/MySide';
-import Friends from './component/friends';
 import Posts from './component/posts'
 
 class Feed extends Component {

@@ -21,7 +21,7 @@ class Friends extends Component {
         registrationDate: "",
       }]
     }
-    setTimeout(() => { this.getUserFriends(); }, 500);
+    setTimeout(() => { this.getUserFriends(); }, 600);
   }
 
 
@@ -37,33 +37,44 @@ class Friends extends Component {
         });
       })
       .catch(function (err) {
-        alert("Erro!");
+
         self.setState({ friends: null });
       });
   }
 
   goToFriendProfile(id) {
     this.props.history.push(`/perfil/${id}`)
+    if (window.location.href.includes("/perfil/"))
+      window.location.reload();
   }
 
   render() {
     var self = this;
-    return (
-      <div>
+    if (self.state.friends !== undefined && self.state.friends !== null) {
+      return (
         <div>
-          <ul className="collection avatar hoverable" >
-            {self.state.friends.map(function (friend) {
-              return (
-                <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
-                  <span><img src={friend.profilePic} className="circle ImgGp" /> </span>
-                  <span className="name">{friend.name}</span>
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <ul className="collection avatar hoverable" >
+              {self.state.friends.map(function (friend) {
+                return (
+                  <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
+                    <span><img src={friend.profilePic} className="circle ImgGp" /> </span>
+                    <span className="name">{friend.name}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
+
+      );
+    } else {
+      return (
+        <div>
+
+        </div>
+      )
+    }
   }
 }
 export default withRouter(Friends);

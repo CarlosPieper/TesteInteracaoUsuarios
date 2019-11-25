@@ -60,10 +60,11 @@ class Profile extends Component {
                 title: ""
             }],
         }
+
     }
 
     UNSAFE_componentWillMount() {
-        setTimeout(() => { this.GetUserInfo(); }, 100);
+        setTimeout(() => { this.GetUserInfo(); }, 50);
         Modal.setAppElement('body');
     }
 
@@ -80,7 +81,7 @@ class Profile extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+
             });
     }
 
@@ -124,7 +125,7 @@ class Profile extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+
             });
     }
 
@@ -161,7 +162,6 @@ class Profile extends Component {
                     self.toggleModal();
                 })
             }).catch(function (err) {
-                alert("Erro ao alterar!")
             });
         }
     }
@@ -457,7 +457,7 @@ class Profile extends Component {
                                     <a className="waves-effect waves-light btn red" onClick={() => { this.GetUserInfo(); this.toggleModal() }} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
                                     <a className="waves-effect waves-light btn green" onClick={() => {
                                         setTimeout(() => { this.PostProfilePic() }, 10);
-                                        setTimeout(() => { this.PostCoverPic() }, 10);
+                                        setTimeout(() => { this.PostCoverPic() }, 100);
                                         setTimeout(() => { this.UpdateUser() }, 1000);
                                     }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</a>
                                 </div>

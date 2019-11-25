@@ -46,7 +46,6 @@ class Register extends Component {
         self.props.history.push("/login");
       })
     }).catch(function (err) {
-      alert("Erro ao cadastrar!")
     });
   }
   render() {
