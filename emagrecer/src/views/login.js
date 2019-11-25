@@ -3,13 +3,13 @@ import { login, isAuthenticated, setId, getId } from '../services/auth';
 import Modal from 'react-modal';
 const customStyles = {
   content: {
-    top: '50%',
+    top: '40%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -45%)',
-    height: '550px',
+    height: '350px',
     overlfow: 'scroll'
   },
 };
@@ -107,7 +107,7 @@ class Login extends Component {
                       </div>
                     </div>
                     <div className="row input-field col s12">
-                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330 }}>
+                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0}}>
                         <i className="material-icons right">send</i>LOGAR</a>
                     </div>
                     <div className="row">
@@ -123,7 +123,7 @@ class Login extends Component {
         <div>
           <Modal isOpen={this.state.isActive} style={customStyles}>
             <div>
-              <div className="modal-content">
+              <div className="modal-content" >
                 <div className="row">
                   <form className="col s12">
                     <h5 style={{ backgroundColor: 'white', color: 'black' }}>RECUPERAÇÃO DE SENHA</h5>
