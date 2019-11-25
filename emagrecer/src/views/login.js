@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 const customStyles = {
   content: {
-    top: '50%',
+    top: '40%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
@@ -108,6 +108,18 @@ class Login extends Component {
                       <input type="password" name="password" value={password} onChange={this.changeHandler} />
                       <label className="active">SENHA</label>
                     </div>
+<<<<<<< HEAD
+                    <div className="row input-field col s12">
+                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0}}>
+                        <i className="material-icons right">send</i>LOGAR</a>
+                    </div>
+                    <div className="row">
+                      <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span><br />
+                      <a onClick={this.toggleModal} className="modal-trigger">ESQUECI MINHA SENHA</a>
+                    </div>
+                  </form>
+                </div>
+=======
                   </div>
                   <div className="row input-field col s12">
                     <button onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330 }}>
@@ -119,6 +131,7 @@ class Login extends Component {
                     <button onClick={this.toggleModal} className="waves-effect waves-light btn" style={{ width: 330 }}>ESQUECI MINHA SENHA</button>
                   </div>
                 </form>
+>>>>>>> 3d34fbd0d1b7598010e6c52b30ecf0a50cdb29db
               </div>
             </div>
           </div>
@@ -126,7 +139,7 @@ class Login extends Component {
         <div>
           <Modal isOpen={this.state.isActive} style={customStyles}>
             <div>
-              <div className="modal-content">
+              <div className="modal-content" >
                 <div className="row">
                   <form className="col s12">
                     <h5 style={{ backgroundColor: 'white', color: 'black' }}>RECUPERAÇÃO DE SENHA</h5>
