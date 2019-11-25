@@ -9,9 +9,11 @@ class MyNav extends Component {
       name: '',
     }
   }
-  goToProfile = e => {
+  goToUsers = e => {
     if (e.keyCode === 13) {
       this.props.history.push(`/usuarios/${this.state.name}`)
+      if (window.location.href.includes("/usuarios/"))
+        window.location.reload();
     }
   }
   logOut() {
@@ -19,6 +21,11 @@ class MyNav extends Component {
   }
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  goToProfile() {
+    this.props.history.push(`/perfil/${getId()}`)
+    if (window.location.href.includes("/perfil/"))
+      window.location.reload();
   }
   render() {
     return (
@@ -37,7 +44,7 @@ class MyNav extends Component {
                     <div id="topbarsearch">
                       <div className="input-field col s6 s12 white-text">
                         <input name="name" type="text" placeholder="Pesquisar" id="autocomplete-input"
-                          className="autocomplete white-text" onKeyDown={this.goToProfile} onChange={this.changeHandler} />
+                          className="autocomplete white-text" onKeyDown={this.goToUsers} onChange={this.changeHandler} />
                       </div>
                     </div>
                   </div>
@@ -46,7 +53,7 @@ class MyNav extends Component {
               <li><Link to={`/mensagens`} className="button hide-on-med-and-down"><i className="material-icons right">message</i>MENSAGENS</Link></li>
               <li><Link to={`/solicitacoes`} className="button hide-on-med-and-down"><i className="material-icons right">notifications</i>SOLICITAÇÕES</Link></li>
               <li><Link to={`/feed`} className="button hide-on-med-and-down"><i className="material-icons right">home</i>FEED</Link></li>
-              <li><Link to={`/perfil/${getId()}`} className="button hide-on-med-and-down" onClick={this.goToProfile}><i className="material-icons right">account_circle</i>PERFIL</Link></li>
+              <li><a onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right">account_circle</i>PERFIL</a></li>
               <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right">exit_to_app</i>SAIR</a></li>
             </ul>
           </div>

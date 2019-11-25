@@ -41,7 +41,7 @@ class UserList extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+                
                 self.setState({ user: null });
             });
     }

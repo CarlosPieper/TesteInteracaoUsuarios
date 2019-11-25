@@ -7,6 +7,7 @@ namespace EmagrecerSocial.API.Models
         public int Author { get; set; }
         public string Text { get; set; }
         public string AuthorName { get; set; }
+        public string AuthorPic { get; set; }
         public string Picture { get; set; }
     }
 }

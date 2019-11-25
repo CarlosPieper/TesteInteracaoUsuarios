@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getId } from '../../../services/auth';
+import { withRouter } from "react-router-dom";
 
 class Pnav extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Pnav extends Component {
         registrationDate: "",
       },
     }
-    setTimeout(() => { this.GetUser(); }, 500);
+    setTimeout(() => { this.GetUser(); }, 300);
 
   }
 
@@ -36,14 +37,20 @@ class Pnav extends Component {
         });
       })
       .catch(function (err) {
-        alert("Erro!");
+        
         self.setState({ user: null });
       });
   }
 
+  reloadIfRequired(id) {
+    this.props.history.push(`/perfil/${id}`)
+    if (window.location.href.includes("/perfil/"))
+      window.location.reload();
+  }
+
   render() {
     return (
-      <Link to={`/perfil/${getId()}`}>
+      <Link to={`/perfil/${getId()}`} onClick={() => { this.reloadIfRequired(getId()) }}>
         <li>
           <div className="user-view" >
             <div className="background">
@@ -60,4 +67,4 @@ class Pnav extends Component {
   }
 }
 
-export default Pnav;
+export default withRouter(Pnav);

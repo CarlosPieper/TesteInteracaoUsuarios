@@ -27,7 +27,7 @@ class FriendRequests extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+                
             });
     }
 
@@ -45,7 +45,7 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                alert("Erro!");
+                
             });
     }
 
@@ -63,7 +63,7 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                alert("Erro!");
+                
             });
     }
 

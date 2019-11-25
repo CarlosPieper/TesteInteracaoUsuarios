@@ -36,6 +36,7 @@ namespace api
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             MySqlConnection connection = new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString"));
+            connection.Open();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<MySqlConnection>(connection);
             services.AddSingleton<IUserRepository, UserRepository>();

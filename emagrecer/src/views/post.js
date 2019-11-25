@@ -40,7 +40,7 @@ class Post extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+                
             });
     }
     getComments() {
@@ -54,7 +54,7 @@ class Post extends Component {
                 });
             })
             .catch(function (err) {
-                alert("Erro!");
+                
             });
     }
     render() {

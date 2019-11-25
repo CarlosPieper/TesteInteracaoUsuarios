@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import MySide from './component/menu/MySide'
-import MyNav from './component/navBar'
-import Friends from './component/friends'
+import MyNav from './component/navBar';
+import MySide from './component/menu/MySide';
 class Chat extends Component {
     constructor(props) {
         super(props);
@@ -9,9 +8,9 @@ class Chat extends Component {
     render() {
         return (
             <div>
-                <ul className="side-nav fMenu fixed">
-                <Friends />
-                </ul>
+                <MyNav />
+                <MySide />
+
             </div>
         );
     }
