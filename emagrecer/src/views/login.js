@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { login, isAuthenticated, setId, getId } from '../services/auth';
+import { login, isAuthenticated, setId } from '../services/auth';
 import Modal from 'react-modal';
+
 const customStyles = {
   content: {
     top: '40%',
@@ -11,9 +12,11 @@ const customStyles = {
     transform: 'translate(-50%, -45%)',
     height: '350px',
     overlfow: 'scroll'
+
   },
 };
 class Login extends Component {
+  hubConnection;
   constructor(props) {
     super(props);
     this.formData = new FormData();
@@ -25,7 +28,7 @@ class Login extends Component {
       emailRecovery: '',
     }
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     Modal.setAppElement('body');
   }
   changeHandler = e => {
@@ -65,7 +68,8 @@ class Login extends Component {
       });
   }
 
-  toggleModal = () => {
+  toggleModal = (e) => {
+    e.preventDefault();
     this.setState({
       isActive: !this.state.isActive
     })
@@ -87,25 +91,24 @@ class Login extends Component {
     const { email, password } = this.state;
     return (
       <div>
-        <div>
-          <div className="row">
-            <div className="col s4 offset-s4">
-              <div className="card large">
-                <div className="card-content black-text">
-                  <form className="col s12 white">
-                    <h4>ENTRAR</h4>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input type="email" name="email" value={email} onChange={this.changeHandler} />
-                        <label className="active">E-MAIL</label>
-                      </div>
+        <div className="row">
+          <div className="col s4 offset-s4">
+            <div className="card large">
+              <div className="card-content black-text">
+                <form className="col s12 white">
+                  <h4>ENTRAR</h4>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input type="email" name="email" value={email} onChange={this.changeHandler} />
+                      <label className="active">E-MAIL</label>
                     </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input type="password" name="password" value={password} onChange={this.changeHandler} />
-                        <label className="active">SENHA</label>
-                      </div>
+                  </div>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input type="password" name="password" value={password} onChange={this.changeHandler} />
+                      <label className="active">SENHA</label>
                     </div>
+<<<<<<< HEAD
                     <div className="row input-field col s12">
                       <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0}}>
                         <i className="material-icons right">send</i>LOGAR</a>
@@ -116,6 +119,19 @@ class Login extends Component {
                     </div>
                   </form>
                 </div>
+=======
+                  </div>
+                  <div className="row input-field col s12">
+                    <button onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330 }}>
+                      <i className="material-icons right">send</i>LOGAR</button>
+                  </div>
+                  <div className="row">
+                    <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span></div>
+                  <div className="row col s12">
+                    <button onClick={this.toggleModal} className="waves-effect waves-light btn" style={{ width: 330 }}>ESQUECI MINHA SENHA</button>
+                  </div>
+                </form>
+>>>>>>> 3d34fbd0d1b7598010e6c52b30ecf0a50cdb29db
               </div>
             </div>
           </div>
@@ -141,8 +157,8 @@ class Login extends Component {
               </div>
               <div className="modal-footer">
                 <div className="row col s12">
-                  <a className="waves-effect waves-light btn red" onClick={this.toggleModal} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
-                  <a className="waves-effect waves-light btn green" onClick={() => { this.SendPassword() }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</a>
+                  <button className="waves-effect waves-light btn red" onClick={this.toggleModal} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</button>
+                  <button className="waves-effect waves-light btn green" onClick={() => { this.SendPassword() }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</button>
                 </div>
               </div>
             </div>

@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Net.Http.Headers;
+using EmagrecerSocial.API.Hubs;
+using System.Threading.Tasks;
 
 namespace EmagrecerSocial.API.Controllers
 {
@@ -50,6 +52,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -62,6 +65,7 @@ namespace EmagrecerSocial.API.Controllers
             password = Cryptography.EncryptPassword(password);
             try
             {
+
                 User user = repository.Login(email, password);
                 if (user.Id != 0)
                 {
@@ -89,6 +93,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -110,6 +115,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -125,6 +131,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -140,6 +147,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }

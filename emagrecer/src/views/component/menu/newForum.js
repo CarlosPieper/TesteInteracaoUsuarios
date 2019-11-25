@@ -8,7 +8,8 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    width: '500px',
   }
 };
 
@@ -41,32 +42,35 @@ class NewForum extends Component {
               <div className="row">
                 <form className="col s12">
                   <div className="row">
-                    <div className="input-field col s6">
-                      <input id="title" type="text" className="validate" />
-                      <label for="title">Titulo</label>
+                    <div className="input-field col s12">
+                      <input name="title" type="text" className="validate" />
+                      <label class="inputLabel">Título</label>
                     </div>
-                    <div className="file-field input-field col s6">
-                      <div className="btn">
-                        <span>File</span>
-                        <input type="file" />
+                  </div>
+                  <div className="row">
+                    <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
+                      <div className="waves-effect waves-light btn">
+                        <i className="material-icons">add_a_photo</i>
+                        <input type="file" accept='image/*' name="profilePic" />
                       </div>
-                      <div className="file-path-wrapper">
-                        <input className="file-path validate hide-on-med-and-down" type="text" />
+                      <div className="file-path-wrapper" style={{ marginTop: 0 }}>
+                        <input className="file-path validate" type="text"
+                          placeholder="Foto de Perfil" disabled />
                       </div>
                     </div>
                   </div>
                   <div className="row">
-                    <div className="input-field col s12">
+                    <div className="input-field col s12" style={{ marginTop: 0 }}>
                       <textarea id="textarea1" className="materialize-textarea"></textarea>
-                      <label for="textarea1">Textarea</label>
+                      <label for="textarea1">Texto</label>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
             <div className="modal-footer">
-              <a className="waves-effect waves-light btn red" ><i className="material-icons right">close</i>CANCELAR</a>
-              <a className="waves-effect waves-light btn green"><i className="material-icons right">check</i>ENVIAR</a>
+              <a className="waves-effect waves-light btn red" style={{ width: 200, marginLeft: 20 }}><i className="material-icons right">close</i>CANCELAR</a>
+              <a className="waves-effect waves-light btn green" style={{ width: 200, marginLeft: 15 }}><i className="material-icons right">check</i>ENVIAR</a>
             </div>
           </div>
         </Modal>

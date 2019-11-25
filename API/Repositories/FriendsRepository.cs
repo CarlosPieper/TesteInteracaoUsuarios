@@ -19,25 +19,25 @@ namespace EmagrecerSocial.API.Repositories
         public void Accept(int idLogged, int id)
         {
             string sql = "INSERT INTO FRIENDS (USER, FRIEND) VALUES (?,?)";
-            connection.Open();
+
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"USER", MySqlDbType.Int32).Value = idLogged;
                 command.Parameters.Add(@"FRIEND", MySqlDbType.Int32).Value = id;
                 command.ExecuteNonQuery();
-                command.Parameters.Remove(@"USER");
-                command.Parameters.Remove(@"FRIEND");
-                command.Parameters.Add(@"FRIEND", MySqlDbType.Int32).Value = idLogged;
-                command.Parameters.Add(@"USER", MySqlDbType.Int32).Value = id;
+            }
+            using (MySqlCommand command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.Add(@"FRIEND", MySqlDbType.Int32).Value = id;
+                command.Parameters.Add(@"USER", MySqlDbType.Int32).Value = idLogged;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
         }
 
         public void Delete(int idLogged, int id)
         {
             string sql = "DELETE FROM FRIENDS WHERE USER = ? AND FRIEND = ?";
-            connection.Open();
+
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"USER", MySqlDbType.Int32).Value = id;
@@ -50,12 +50,11 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"FRIEND", MySqlDbType.Int32).Value = id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
         }
 
         public List<User> ListFriends(int id)
         {
-            connection.Open();
+
             List<User> users = new List<User>();
             string sql = @"SELECT U.* FROM FRIENDS F INNER JOIN USERS U ON (F.FRIEND = U.ID) WHERE F.USER = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -82,7 +81,6 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
             return users;
         }
 
@@ -90,7 +88,7 @@ namespace EmagrecerSocial.API.Repositories
         {
             int contagem = 0;
             string sql = "SELECT COUNT(*) AS CONTAGEM FROM FRIENDS WHERE USER = ? AND FRIEND = ?";
-            connection.Open();
+
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"USER", MySqlDbType.String).Value = id;
@@ -103,7 +101,6 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
             return contagem > 0;
         }
     }

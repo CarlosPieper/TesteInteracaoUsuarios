@@ -37,6 +37,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -52,6 +53,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -71,10 +73,11 @@ namespace EmagrecerSocial.API.Controllers
                 {
                     forums = repository.GetUserForums(id);
                 }
-                return Ok(forums);
+                return Ok(new { forums = forums });
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -86,10 +89,11 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 Forum forum = repository.SearchById(id);
-                return Ok(forum);
+                return Ok(new { forum = forum });
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
         }
@@ -105,6 +109,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
+
                 throw ex;
             }
 
@@ -143,7 +148,7 @@ namespace EmagrecerSocial.API.Controllers
         public ActionResult ListUserForums(int id)
         {
             List<Forum> forums = repository.GetUserForums(id);
-            return Ok(new {forums = forums});
+            return Ok(new { forums = forums });
         }
     }
 }

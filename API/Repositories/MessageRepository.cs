@@ -15,19 +15,19 @@ namespace EmagrecerSocial.API.Repositories
 
         public void Delete(int id)
         {
-            connection.Open();
+       
             string sql = "DELETE FROM MESSAGES WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"ID", MySqlDbType.String).Value = id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public void Include(Message message)
         {
-            connection.Open();
+       
             string sql = "INSERT INTO MESSAGES (TEXT, SENDER, RECEIVER) VALUES (?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -36,12 +36,12 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"RECEIVER", MySqlDbType.String).Value = message.MessageReceiver;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public List<Message> ListMessages()
         {
-            connection.Open();
+       
             List<Message> messages = new List<Message>();
             string sql = @"SELECT M.*, US.NAME AS SENDERNAME FROM MESSAGES M 
             INNER JOIN USERS US ON (M.SENDER = US.ID) 
@@ -62,7 +62,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return messages;
         }
     }

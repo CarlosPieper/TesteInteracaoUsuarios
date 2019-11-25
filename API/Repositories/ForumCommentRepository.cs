@@ -15,7 +15,6 @@ namespace EmagrecerSocial.API.Repositories
 
         public void Include(ForumComment forumComment)
         {
-            connection.Open();
             string sql = "INSERT INTO FORUM_COMMENTS (FORUM, COMMENT_TEXT, AUTHOR) VALUES (?, ?, ?)";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -24,12 +23,11 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = forumComment.Author;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public List<ForumComment> ListForumComments(int forum)
         {
-            connection.Open();
             List<ForumComment> comments = new List<ForumComment>();
             string sql = @"SELECT F.*, U.NAME FROM FORUM_COMMENTS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) 
             WHERE FORUM = ?";
@@ -50,13 +48,12 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return comments;
         }
 
         public void Modify(ForumComment forumComment)
         {
-            connection.Open();
             string sql = "UPDATE FORUM_COMMENTS SET COMMENT_TEXT = ? WHERE ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -64,7 +61,7 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forumComment.Id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
     }
 }

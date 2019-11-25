@@ -20,7 +20,8 @@ class Pnav extends Component {
         registrationDate: "",
       },
     }
-    this.GetUser();
+    setTimeout(() => { this.GetUser(); }, 500);
+
   }
 
   GetUser() {

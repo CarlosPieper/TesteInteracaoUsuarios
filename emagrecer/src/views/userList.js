@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import MyNav from './component/navBar';
+import MySide from './component/menu/MySide';
+import { withRouter } from "react-router-dom";
 
 class UserList extends Component {
     name;
@@ -24,7 +27,7 @@ class UserList extends Component {
         }
     }
     componentWillMount() {
-        setTimeout(() => { this.GetUsersByName(); }, 100);
+        setTimeout(() => { this.GetUsersByName(); }, 500);
     }
     GetUsersByName() {
         var self = this;
@@ -42,12 +45,47 @@ class UserList extends Component {
                 self.setState({ user: null });
             });
     }
+
+    goToUserProfile(id) {
+        this.props.history.push(`/perfil/${id}`)
+    }
+
     render() {
+        var self = this;
         return (
             <div>
-
+                <MyNav />
+                <MySide />
+                <div className="row">
+                    <div className="col l3">
+                    </div>
+                    <div className="col l6 s11">
+                        {self.state.users.map(function (user) {
+                            if (user.profilePic == "" || user.profilePic == " ") {
+                                user.profilePic = "/images/default.PNG";
+                            }
+                            return (
+                                <div className="card small" style={{ height: 200 }} onClick={() => { self.goToUserProfile(user.id) }}>
+                                    <div className="card-content">
+                                        <div key={user.id}>
+                                            <span>
+                                                <img src={user.profilePic} className="circle ImgGp" />
+                                            </span>
+                                            <span className="name">
+                                                {user.name}
+                                            </span>
+                                            <div className="card-footer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="col l3"></div>
+                </div>
             </div>
         );
     }
 }
-export default UserList;
+export default withRouter(UserList);

@@ -16,7 +16,7 @@ namespace EmagrecerSocial.API.Repositories
         public void Delete(int idLogged, int id)
         {
             string sql = "DELETE FROM FRIENDS_REQUEST WHERE REQUESTER = ? AND RECEIVER = ?";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"REQUESTER", MySqlDbType.Int32).Value = id;
@@ -29,20 +29,20 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"RECEIVER", MySqlDbType.Int32).Value = id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public void InviteFriend(int idLogged, int id)
         {
             string sql = "INSERT INTO FRIENDS_REQUEST (REQUESTER, RECEIVER) VALUES (?,?)";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"REQUESTER", MySqlDbType.Int32).Value = idLogged;
                 command.Parameters.Add(@"RECEIVER", MySqlDbType.Int32).Value = id;
                 command.ExecuteNonQuery();
             }
-            connection.Close();
+            ;
         }
 
         public List<FriendRequest> ListFriendRequests(int idLogged)
@@ -50,7 +50,7 @@ namespace EmagrecerSocial.API.Repositories
             List<FriendRequest> listRequests = new List<FriendRequest>();
             string sql = @"SELECT F.REQUESTER, U.NAME, U.PROFILE_PIC FROM FRIENDS_REQUEST F INNER JOIN USERS U 
             ON (F.REQUESTER = U.ID) WHERE RECEIVER = ?;";
-            connection.Open();
+       
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"RECEIVER", MySqlDbType.Int32).Value = idLogged;
@@ -66,14 +66,14 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return listRequests;
         }
 
         public bool VerifyFriendRequest(int idLogged, int id)
         {
             var contagem = 0;
-            connection.Open();
+       
             string sql = "SELECT COUNT(*) AS CONTAGEM FROM FRIENDS_REQUEST WHERE REQUESTER = ? AND RECEIVER = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -87,7 +87,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            connection.Close();
+            ;
             return contagem > 0;
         }
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { getId } from '../../services/auth';
+import { withRouter } from "react-router-dom";
+
 class Friends extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +21,10 @@ class Friends extends Component {
         registrationDate: "",
       }]
     }
-    setTimeout(() => { this.getUserFriends(); }, 100);
+    setTimeout(() => { this.getUserFriends(); }, 500);
   }
+
+
   getUserFriends() {
     var self = this;
     let queryString = new URLSearchParams();
@@ -37,91 +41,29 @@ class Friends extends Component {
         self.setState({ friends: null });
       });
   }
+
+  goToFriendProfile(id) {
+    this.props.history.push(`/perfil/${id}`)
+  }
+
   render() {
+    var self = this;
     return (
       <div>
         <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <ul className="collection  avatar"  >
-            <li className="collection-item ">
-              <img src="user.png" className="circle ImgGp" />
-              <span className="title">Nando</span>
-            </li>
+          <ul className="collection avatar hoverable" >
+            {self.state.friends.map(function (friend) {
+              return (
+                <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
+                  <span><img src={friend.profilePic} className="circle ImgGp" /> </span>
+                  <span className="name">{friend.name}</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
     );
   }
 }
-export default Friends;
+export default withRouter(Friends);
