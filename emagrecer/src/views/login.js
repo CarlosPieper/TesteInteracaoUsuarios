@@ -90,40 +90,41 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <div className="row">
-          <div className="col s4 offset-s4">
-            <div className="card large">
-              <div className="card-content black-text">
-                <form className="col s12 white">
-                  <h4>ENTRAR</h4>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input type="email" name="email" value={email} onChange={this.changeHandler} />
-                      <label className="active">E-MAIL</label>
+      <>
+        <div>
+          <div className="row">
+            <div className="col s4 offset-s4">
+              <div className="card large">
+                <div className="card-content black-text">
+                  <form className="col s12 white">
+                    <h4>ENTRAR</h4>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input type="email" name="email" value={email} onChange={this.changeHandler} />
+                        <label className="active">E-MAIL</label>
+                      </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input type="password" name="password" value={password} onChange={this.changeHandler} />
-                      <label className="active">SENHA</label>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input type="password" name="password" value={password} onChange={this.changeHandler} />
+                        <label className="active">SENHA</label>
+                      </div>
                     </div>
-                  </div>
-                  <div className="row input-field col s12">
-                    <button onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330 }}>
-                      <i className="material-icons right">send</i>LOGAR</button>
-                  </div>
-                  <div className="row">
-                    <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span></div>
-                  <div className="row col s12">
-                    <button onClick={this.toggleModal} className="waves-effect waves-light btn" style={{ width: 330 }}>ESQUECI MINHA SENHA</button>
-                  </div>
-                </form>
+                    <div className="row input-field col s12">
+                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0 }}>
+                        <i className="material-icons right">send</i>LOGAR</a>
+                    </div>
+                    <div className="row">
+                      <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span><br />
+                      <a onClick={this.toggleModal} className="modal-trigger">ESQUECI MINHA SENHA</a>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
+        <>
           <Modal isOpen={this.state.isActive} style={customStyles}>
             <div>
               <div className="modal-content" >
@@ -150,8 +151,8 @@ class Login extends Component {
               </div>
             </div>
           </Modal>
-        </div>
-      </div>
+        </>
+      </>
     );
   }
 }
