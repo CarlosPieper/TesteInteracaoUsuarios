@@ -25,7 +25,7 @@ class NewForum extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     Modal.setAppElement('body');
   }
 
@@ -89,7 +89,7 @@ class NewForum extends Component {
     var self = this;
     return (
       <div>
-        <li> <a onClick={this.toggleModal} className="btn modal-trigger blue darken-3">CRIAR FORUM</a></li>
+        <li> <a href="#0" onClick={this.toggleModal} className="btn modal-trigger blue darken-3">CRIAR FORUM</a></li>
         <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} style={customStyles}>
           <div>
             <div className="modal-content">
@@ -124,14 +124,14 @@ class NewForum extends Component {
               </div>
             </div>
             <div className="modal-footer">
-              <a className="waves-effect waves-light btn red" style={{ width: 200, marginLeft: 20 }}>
-                <i className="material-icons right">close</i>CANCELAR</a>
-              <a onClick={() => {
+              <button className="waves-effect waves-light btn red" style={{ width: 200, marginLeft: 20 }}>
+                <i className="material-icons right">close</i>CANCELAR</button>
+              <button onClick={() => {
                 self.PostPicture();
                 setTimeout(() => { self.PostForum() })
               }}
                 className="waves-effect waves-light btn green" style={{ width: 200, marginLeft: 15 }}>
-                <i className="material-icons right">check</i>ENVIAR</a>
+                <i className="material-icons right">check</i>ENVIAR</button>
             </div>
           </div>
         </Modal>

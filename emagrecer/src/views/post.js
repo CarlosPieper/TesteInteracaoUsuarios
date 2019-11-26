@@ -24,7 +24,7 @@ class Post extends Component {
             }],
         }
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         setTimeout(() => { this.getPost() }, 100);
     }
     getPost() {
@@ -40,7 +40,7 @@ class Post extends Component {
                 });
             })
             .catch(function (err) {
-                
+
             });
     }
     getComments() {
@@ -53,13 +53,11 @@ class Post extends Component {
                     self.setState({ comments: data.forumcomments });
                 });
             })
-            .catch(function (err) {
-                
-            });
+            .catch(function (err) { });
     }
     render() {
         var self = this;
-        if (this.state.post.picture == "" || this.state.post.picture == " ")
+        if (this.state.post.picture === "" || this.state.post.picture === " ")
             this.state.post.picture = "/images/default.PNG";
         return (
             <div>
@@ -70,7 +68,7 @@ class Post extends Component {
                     <div className="col l8 s9">
                         <div className="card medium card forum">
                             <div className="card-image">
-                                <img src={self.state.post.picture} />
+                                <img src={self.state.post.picture} alt="" />
                             </div>
                             <div className="card-title" style={{ marginLeft: 25 }}>
                                 <span>{self.state.post.title}</span>

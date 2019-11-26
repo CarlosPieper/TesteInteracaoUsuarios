@@ -111,12 +111,12 @@ class Login extends Component {
                       </div>
                     </div>
                     <div className="row input-field col s12">
-                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0 }}>
-                        <i className="material-icons right">send</i>LOGAR</a>
+                      <div onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0 }}>
+                        <i className="material-icons right">send</i>LOGAR</div>
                     </div>
                     <div className="row">
                       <span>NÃO POSSUI UMA CONTA AINDA? <a href="/cadastro">REGISTRE-SE AGORA!</a></span><br />
-                      <a onClick={this.toggleModal} className="modal-trigger">ESQUECI MINHA SENHA</a>
+                      <a href="/" onClick={this.toggleModal} className="modal-trigger">ESQUECI MINHA SENHA</a>
                     </div>
                   </form>
                 </div>
@@ -124,34 +124,32 @@ class Login extends Component {
             </div>
           </div>
         </div>
-        <>
-          <Modal isOpen={this.state.isActive} style={customStyles}>
-            <div>
-              <div className="modal-content" >
-                <div className="row">
-                  <form className="col s12">
-                    <h5 style={{ backgroundColor: 'white', color: 'black' }}>RECUPERAÇÃO DE SENHA</h5>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <p> INFORME SEU E-MAIL, VOCÊ RECEBERÁ UM CÓDIGO PARA SUBSTITUIR SUA SENHA</p>
-                      </div>
-                      <div className="input-field col s12">
-                        <input type="email" name="emailRecovery" onChange={this.changeHandler} />
-                        <label className="inputLabel">E-mail</label>
-                      </div>
+        <Modal isOpen={this.state.isActive} style={customStyles}>
+          <div>
+            <div className="modal-content" >
+              <div className="row">
+                <form className="col s12">
+                  <h5 style={{ backgroundColor: 'white', color: 'black' }}>RECUPERAÇÃO DE SENHA</h5>
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <p> INFORME SEU E-MAIL, VOCÊ RECEBERÁ UM CÓDIGO PARA SUBSTITUIR SUA SENHA</p>
                     </div>
-                  </form>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <div className="row col s12">
-                  <button className="waves-effect waves-light btn red" onClick={this.toggleModal} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</button>
-                  <button className="waves-effect waves-light btn green" onClick={() => { this.SendPassword() }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</button>
-                </div>
+                    <div className="input-field col s12">
+                      <input type="email" name="emailRecovery" onChange={this.changeHandler} />
+                      <label className="inputLabel">E-mail</label>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-          </Modal>
-        </>
+            <div className="modal-footer">
+              <div className="row col s12">
+                <button className="waves-effect waves-light btn red" onClick={this.toggleModal} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</button>
+                <button className="waves-effect waves-light btn green" onClick={() => { this.SendPassword() }} style={{ width: 250, marginLeft: 5 }}><i className="material-icons right">check</i>ENVIAR</button>
+              </div>
+            </div>
+          </div>
+        </Modal>
       </>
     );
   }

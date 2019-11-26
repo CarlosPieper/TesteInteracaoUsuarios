@@ -27,7 +27,7 @@ class FriendRequests extends Component {
                 });
             })
             .catch(function (err) {
-                
+
             });
     }
 
@@ -45,7 +45,7 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                
+
             });
     }
 
@@ -63,13 +63,13 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                
+
             });
     }
 
     render() {
         var self = this;
-        if (self.state.requests == undefined || self.state.requests == null) {
+        if (self.state.requests === undefined || self.state.requests === null) {
             return (
                 <div>
 
@@ -86,7 +86,7 @@ class FriendRequests extends Component {
                         </div>
                         <div className="col l6 s11">
                             {self.state.requests.map(function (request) {
-                                if (request.requesterPicture == "" || request.requesterPicture == " ") {
+                                if (request.requesterPicture === "" || request.requesterPicture === " ") {
                                     request.requesterPicture = "/images/default.PNG";
                                 }
                                 return (
@@ -95,17 +95,17 @@ class FriendRequests extends Component {
                                             <div className="card-content">
                                                 <div key={request.requester}>
                                                     <span>
-                                                        <img src={request.requesterPicture} className="circle ImgGp" />
+                                                        <img src={request.requesterPicture} className="circle ImgGp" alt="" />
                                                     </span>
                                                     <span className="name">
                                                         {request.requesterName}
                                                     </span>
                                                     <div className="card-footer">
                                                         <span>
-                                                            <a className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</a>
+                                                            <button className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</button>
                                                         </span>
                                                         <span>
-                                                            <a className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</a>
+                                                            <button className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</button>
                                                         </span>
                                                     </div>
                                                 </div>

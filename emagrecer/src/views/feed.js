@@ -4,9 +4,9 @@ import MySide from './component/menu/MySide';
 import Posts from './component/posts'
 
 class Feed extends Component {
-  constructor(props) {
-    super(props);
-  }
+  //constructor(props) {
+  //  super(props);
+  //}
 
   render() {
     return (

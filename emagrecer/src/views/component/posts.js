@@ -43,14 +43,14 @@ class Posts extends Component {
         <div className="col l6 s11">
           <div className="card small forum">
             {self.state.posts.map(function (post) {
-              if (post.picture == "" || post.picture == " ") {
+              if (post.picture === "" || post.picture === " ") {
                 post.picture = "/images/default.PNG";
               }
               return (
                 <div className="card small forum hoverable" key={post.id} onClick={() => (self.goToForum(post.id))}>
-                  <a className="text" >
+                  <a href="#0" className="text" >
                     <div className="card-image" >
-                      <img src={post.picture} />
+                      <img alt="" src={post.picture} />
                     </div>
                     <span style={{ marginLeft: 25 }} className="card-title">{post.title}</span>
                     <div className="card-content">

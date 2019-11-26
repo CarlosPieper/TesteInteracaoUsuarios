@@ -58,7 +58,7 @@ class Friends extends Component {
               {self.state.friends.map(function (friend) {
                 return (
                   <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
-                    <span><img src={friend.profilePic} className="circle ImgGp" /> </span>
+                    <span><img src={friend.profilePic} className="circle ImgGp" alt=""/> </span>
                     <span className="name">{friend.name}</span>
                   </li>
                 );

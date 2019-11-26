@@ -10,7 +10,6 @@ import Profile from "./views/profile";
 import FriendRequests from "./views/friendRequests";
 import Chat from "./views/chat";
 import Post from './views/post'
-import MySide from './views/component/menu/MySide'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route

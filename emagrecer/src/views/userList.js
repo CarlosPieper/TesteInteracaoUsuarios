@@ -26,7 +26,7 @@ class UserList extends Component {
             }]
         }
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         setTimeout(() => { this.GetUsersByName(); }, 500);
     }
     GetUsersByName() {
@@ -61,7 +61,7 @@ class UserList extends Component {
                     </div>
                     <div className="col l6 s11">
                         {self.state.users.map(function (user) {
-                            if (user.profilePic == "" || user.profilePic == " ") {
+                            if (user.profilePic === "" || user.profilePic === " ") {
                                 user.profilePic = "/images/default.PNG";
                             }
                             return (
@@ -69,7 +69,7 @@ class UserList extends Component {
                                     <div className="card-content">
                                         <div key={user.id}>
                                             <span>
-                                                <img src={user.profilePic} className="circle ImgGp" />
+                                                <img src={user.profilePic} className="circle ImgGp" alt=""/>
                                             </span>
                                             <span className="name">
                                                 {user.name}

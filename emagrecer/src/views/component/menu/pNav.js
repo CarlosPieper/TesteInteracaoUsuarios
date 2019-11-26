@@ -54,9 +54,9 @@ class Pnav extends Component {
         <li>
           <div className="user-view" >
             <div className="background">
-              <img src={this.state.user.coverPic} width="100%" height="100%" />
+              <img src={this.state.user.coverPic} width="100%" height="100%" alt=""/>
             </div>
-            <img className="circle" src={this.state.user.profilePic} />
+            <img className="circle" src={this.state.user.profilePic} alt=""/>
             <span className="white-text">{this.state.user.name}</span>
             <span className="white-text email">{this.state.user.email}</span>
           </div>

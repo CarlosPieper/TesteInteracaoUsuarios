@@ -34,7 +34,7 @@ class MyNav extends Component {
           <div className="nav-wrapper container ">
             <ul>
               <li className="right">
-                <a data-toggle="modal" data-target="#myModal" className="button-collapse"><i className="material-icons">menu</i></a>
+                <a href="#0" data-toggle="modal" data-target="#myModal" className="button-collapse"><i className="material-icons">menu</i></a>
               </li>
             </ul>
             <ul id="nav-mobile" className="right">
@@ -53,7 +53,7 @@ class MyNav extends Component {
               <li><Link to={`/mensagens`} className="button hide-on-med-and-down"><i className="material-icons right">message</i>MENSAGENS</Link></li>
               <li><Link to={`/solicitacoes`} className="button hide-on-med-and-down"><i className="material-icons right">notifications</i>SOLICITAÇÕES</Link></li>
               <li><Link to={`/feed`} className="button hide-on-med-and-down"><i className="material-icons right">home</i>FEED</Link></li>
-              <li><a onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right">account_circle</i>PERFIL</a></li>
+              <li><span onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right">account_circle</i>PERFIL</span></li>
               <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right">exit_to_app</i>SAIR</a></li>
             </ul>
           </div>

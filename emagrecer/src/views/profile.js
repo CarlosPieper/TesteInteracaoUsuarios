@@ -196,7 +196,7 @@ class Profile extends Component {
         if (this.state.canEdit) {
             return (
                 <div>
-                    <a onClick={this.toggleModal} className="btn modal-trigger blue darken-3"><i className="material-icons right">create</i>Editar perfil</a>
+                    <a href="#0" onClick={this.toggleModal} className="btn modal-trigger blue darken-3"><i className="material-icons right">create</i>Editar perfil</a>
                 </div>
             )
         }
@@ -205,19 +205,19 @@ class Profile extends Component {
                 if (!this.userInvited) {
                     return (
                         <div>
-                            <a className="btn blue darken-3" onClick={this.invite}><i className="material-icons left">person_add</i>Convidar</a>
+                            <a href="#0" className="btn blue darken-3" onClick={this.invite}><i className="material-icons left">person_add</i>Convidar</a>
                         </div>
                     )
                 }
                 return (
                     <div>
-                        <a className="btn blue darken-3" onClick={this.cancelInvite}><i className="material-icons left">cancel</i>Cancelar convite</a>
+                        <a href="#0" className="btn blue darken-3" onClick={this.cancelInvite}><i className="material-icons left">cancel</i>Cancelar convite</a>
                     </div>
                 )
             } else {
                 return (
                     <div>
-                        <a className="btn blue darken-3" onClick={this.removeFriend}><i className="material-icons left">remove_circle</i>Remover Amigo</a>
+                        <a href="#0" className="btn blue darken-3" onClick={this.removeFriend}><i className="material-icons left">remove_circle</i>Remover Amigo</a>
                     </div>
                 )
             }
@@ -316,9 +316,9 @@ class Profile extends Component {
                         <div className="col l8 s9">
                             <div className="card large card forum" style={{ height: 620 }}>
                                 <div className="card-image">
-                                    <img src={self.coverPic} />
+                                    <img src={self.coverPic} alt="" />
                                     <div className=" ftPerfil" overflow="hidden">
-                                        <img src={self.profilePic} />
+                                        <img src={self.profilePic} alt="" />
                                         <div className="nPerfil">
                                             <span>{self.name}</span>
                                         </div>
@@ -350,14 +350,14 @@ class Profile extends Component {
                             <div className="col l4"></div>
                             <div className="col l6 s11">
                                 {self.state.posts.map(function (post) {
-                                    if (post.picture == "" || post.picture == " ") {
+                                    if (post.picture === "" || post.picture === " ") {
                                         post.picture = "/images/default.PNG";
                                     }
                                     return (
                                         <div className="card small forum hoverable" key={post.id} onClick={() => { self.goToForum(post.id) }}>
-                                            <a className="text">
+                                            <a href="#0" className="text">
                                                 <div className="card-image">
-                                                    <img src={post.picture} />
+                                                    <img src={post.picture} alt="" />
                                                 </div>
                                                 <span style={{ marginLeft: 25 }} className="card-title">{post.title}</span>
                                                 <div className="card-content">
@@ -454,8 +454,8 @@ class Profile extends Component {
                             </div>
                             <div className="modal-footer">
                                 <div className="row col s12">
-                                    <a className="waves-effect waves-light btn red" onClick={() => { this.GetUserInfo(); this.toggleModal() }} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
-                                    <a className="waves-effect waves-light btn green" onClick={() => {
+                                    <a href="#0" className="waves-effect waves-light btn red" onClick={() => { this.GetUserInfo(); this.toggleModal() }} style={{ width: 250, marginRight: 5 }}><i className="material-icons right">close</i>CANCELAR</a>
+                                    <a href="#0" className="waves-effect waves-light btn green" onClick={() => {
                                         setTimeout(() => { this.PostProfilePic() }, 10);
                                         setTimeout(() => { this.PostCoverPic() }, 100);
                                         setTimeout(() => { this.UpdateUser() }, 1000);
