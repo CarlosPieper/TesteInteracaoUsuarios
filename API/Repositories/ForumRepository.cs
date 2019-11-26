@@ -86,7 +86,7 @@ namespace EmagrecerSocial.API.Repositories
         {
 
             Forum forum = new Forum();
-            string sql = "SELECT F.*, U.NAME, U.PROFILEPIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE F.ID = ?";
+            string sql = "SELECT F.*, U.NAME, U.PROFILE_PIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE F.ID = ?";
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = id;
@@ -100,7 +100,7 @@ namespace EmagrecerSocial.API.Repositories
                         forum.Title = reader.GetString("TITLE");
                         forum.AuthorName = reader.GetString("NAME");
                         forum.Picture = reader.GetString("PICTURE");
-                        forum.AuthorPic = reader.GetString("PROFILEPIC");
+                        forum.AuthorPic = reader.GetString("PROFILE_PIC");
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace EmagrecerSocial.API.Repositories
         public List<Forum> GetUserForums(int user)
         {
             List<Forum> forums = new List<Forum>();
-            string sql = "SELECT F.*, U.NAME AS AUTHORNAME, U.PROFILEPIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
+            string sql = "SELECT F.*, U.NAME AS AUTHORNAME, U.PROFILE_PIC FROM FORUMS F INNER JOIN USERS U ON (F.AUTHOR = U.ID) WHERE AUTHOR = ? ORDER BY F.ID DESC";
 
             using (MySqlCommand command = new MySqlCommand(sql, connection))
             {
@@ -126,7 +126,7 @@ namespace EmagrecerSocial.API.Repositories
                         forum.Title = reader.GetString("TITLE");
                         forum.AuthorName = reader.GetString("AUTHORNAME");
                         forum.Picture = reader.GetString("PICTURE");
-                        forum.AuthorPic = reader.GetString("PROFILEPIC");
+                        forum.AuthorPic = reader.GetString("PROFILE_PIC");
                         forums.Add(forum);
                     }
                 }

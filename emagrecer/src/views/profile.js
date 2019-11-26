@@ -293,6 +293,10 @@ class Profile extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    goToForum(id) {
+        this.props.history.push(`/post/${id}`)
+    }
+
     render() {
         var self = this;
         if (self.coverPic === "" || self.coverPic === " " || self.coverPic === undefined || self.coverPic === null)
@@ -350,8 +354,8 @@ class Profile extends Component {
                                         post.picture = "/images/default.PNG";
                                     }
                                     return (
-                                        <div className="card small forum" key={post.id}>
-                                            <a className="text" onClick={self.goToForum}>
+                                        <div className="card small forum hoverable" key={post.id} onClick={() => { self.goToForum(post.id) }}>
+                                            <a className="text">
                                                 <div className="card-image">
                                                     <img src={post.picture} />
                                                 </div>
@@ -370,86 +374,82 @@ class Profile extends Component {
                     <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} style={customStyles}>
                         <div>
                             <div className="modal-content">
-                                <div className="frame">
-                                    <div className="scroll">
+                                <div className="row">
+                                    <form className="col s12">
+                                        <h5 style={{ backgroundColor: 'white', color: 'black' }}>EDITAR PERFIL</h5>
                                         <div className="row">
-                                            <form className="col s12">
-                                                <h5 style={{ backgroundColor: 'white', color: 'black' }}>EDITAR PERFIL</h5>
-                                                <div className="row">
-                                                    <div className="input-field col s12" style={{ marginTop: 0 }}>
-                                                        <input type="text" name="name" defaultValue={self.state.name} onChange={this.changeHandler} />
-                                                        <label className="active">Nome</label>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }} onChange={this.changeHandler}>
-                                                        <input type="password" name="password" />
-                                                        <label className="inputLabel">Senha</label>
-                                                    </div>
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }} onChange={this.changeHandler}>
-                                                        <input type="password" name="confirmPassword" />
-                                                        <label className="inputLabel">Confirmar senha</label>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="input-field col s12" style={{ marginTop: 0 }}>
-                                                        <input type="email" name="email" defaultValue={self.state.email} onChange={this.changeHandler} />
-                                                        <label className="active">E-mail</label>
-                                                    </div >
-                                                </div >
-                                                <div className="row">
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                        <input type="date" name="birthDate" defaultValue={self.birth} onChange={this.changeHandler} />
-                                                        <label className="active">Data de Nascimento</label>
-                                                    </div>
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                        <input type="text" name="city" defaultValue={self.state.city} onChange={this.changeHandler} />
-                                                        <label className="active">Cidade (opcional)</label>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                        <input type="text" name="genre" defaultValue={self.state.genre} onChange={this.changeHandler} />
-                                                        <label className="active">Gênero (opcional)</label>
-                                                    </div>
-                                                    <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                        <input disabled type="date" name="registerDate" defaultValue={self.register} onChange={this.changeHandler} />
-                                                        <label className="active">Data de Registro</label>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
-                                                        <div className="waves-effect waves-light btn">
-                                                            <i className="material-icons">add_a_photo</i>
-                                                            <input type="file" accept='image/*' name="profilePic" onChange={(e) => self.saveProfilePic(e)} />
-                                                        </div>
-                                                        <div className="file-path-wrapper" style={{ marginTop: 0 }}>
-                                                            <input className="file-path validate" type="text"
-                                                                placeholder="Foto de Perfil" defaultValue={self.state.profilePic} disabled />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
-                                                        <div className="waves-effect waves-light btn" >
-                                                            <i className="material-icons">add_a_photo</i>
-                                                            <input type="file" accept='image/*' name="coverPic" onChange={(e) => self.saveCoverPic(e)} />
-                                                        </div>
-                                                        <div className="file-path-wrapper" style={{ marginTop: 0 }}>
-                                                            <input className="file-path validate" type="text"
-                                                                placeholder="Foto de Capa" defaultValue={self.state.coverPic} disabled />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="input-field col s12" style={{ marginTop: 0 }}>
-                                                        <textarea name="description" className="materialize-textarea" defaultValue={self.state.description} onChange={this.changeHandler}></textarea>
-                                                        <label className="active">Descrição</label>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <div className="input-field col s12" style={{ marginTop: 0 }}>
+                                                <input type="text" name="name" defaultValue={self.state.name} onChange={this.changeHandler} />
+                                                <label className="active">Nome</label>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div className="row">
+                                            <div className="input-field col s6" style={{ marginTop: 0 }} onChange={this.changeHandler}>
+                                                <input type="password" name="password" />
+                                                <label className="inputLabel">Senha</label>
+                                            </div>
+                                            <div className="input-field col s6" style={{ marginTop: 0 }} onChange={this.changeHandler}>
+                                                <input type="password" name="confirmPassword" />
+                                                <label className="inputLabel">Confirmar senha</label>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="input-field col s12" style={{ marginTop: 0 }}>
+                                                <input type="email" name="email" defaultValue={self.state.email} onChange={this.changeHandler} />
+                                                <label className="active">E-mail</label>
+                                            </div >
+                                        </div >
+                                        <div className="row">
+                                            <div className="input-field col s6" style={{ marginTop: 0 }}>
+                                                <input type="date" name="birthDate" defaultValue={self.birth} onChange={this.changeHandler} />
+                                                <label className="active">Data de Nascimento</label>
+                                            </div>
+                                            <div className="input-field col s6" style={{ marginTop: 0 }}>
+                                                <input type="text" name="city" defaultValue={self.state.city} onChange={this.changeHandler} />
+                                                <label className="active">Cidade (opcional)</label>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="input-field col s6" style={{ marginTop: 0 }}>
+                                                <input type="text" name="genre" defaultValue={self.state.genre} onChange={this.changeHandler} />
+                                                <label className="active">Gênero (opcional)</label>
+                                            </div>
+                                            <div className="input-field col s6" style={{ marginTop: 0 }}>
+                                                <input disabled type="date" name="registerDate" defaultValue={self.register} onChange={this.changeHandler} />
+                                                <label className="active">Data de Registro</label>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
+                                                <div className="waves-effect waves-light btn">
+                                                    <i className="material-icons">add_a_photo</i>
+                                                    <input type="file" accept='image/*' name="profilePic" onChange={(e) => self.saveProfilePic(e)} />
+                                                </div>
+                                                <div className="file-path-wrapper" style={{ marginTop: 0 }}>
+                                                    <input className="file-path validate" type="text"
+                                                        placeholder="Foto de Perfil" defaultValue={self.state.profilePic} disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
+                                                <div className="waves-effect waves-light btn" >
+                                                    <i className="material-icons">add_a_photo</i>
+                                                    <input type="file" accept='image/*' name="coverPic" onChange={(e) => self.saveCoverPic(e)} />
+                                                </div>
+                                                <div className="file-path-wrapper" style={{ marginTop: 0 }}>
+                                                    <input className="file-path validate" type="text"
+                                                        placeholder="Foto de Capa" defaultValue={self.state.coverPic} disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="input-field col s12" style={{ marginTop: 0 }}>
+                                                <textarea name="description" className="materialize-textarea" defaultValue={self.state.description} onChange={this.changeHandler}></textarea>
+                                                <label className="active">Descrição</label>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div className="modal-footer">

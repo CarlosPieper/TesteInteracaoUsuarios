@@ -158,3 +158,6 @@ h5{
 .collection-item.hoverable.friends:hover{
   cursor: pointer;
 }
+.forum.hoverable:hover{
+  cursor: pointer;
+}

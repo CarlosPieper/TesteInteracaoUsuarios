@@ -64,7 +64,7 @@ class Login extends Component {
         });
       })
       .catch(function (err) {
-        
+
       });
   }
 
@@ -83,7 +83,7 @@ class Login extends Component {
         alert("E-mail enviado! Entre no seu e-mail para ver seu código de acesso!");
       })
       .catch(function (err) {
-        
+
       });
   }
 
@@ -91,27 +91,27 @@ class Login extends Component {
     const { email, password } = this.state;
     return (
       <>
-      <div>
-        <div className="row">
-          <div className="col s4 offset-s4">
-            <div className="card large">
-              <div className="card-content black-text">
-                <form className="col s12 white">
-                  <h4>ENTRAR</h4>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input type="email" name="email" value={email} onChange={this.changeHandler} />
-                      <label className="active">E-MAIL</label>
+        <div>
+          <div className="row">
+            <div className="col s4 offset-s4">
+              <div className="card large">
+                <div className="card-content black-text">
+                  <form className="col s12 white">
+                    <h4>ENTRAR</h4>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input type="email" name="email" value={email} onChange={this.changeHandler} />
+                        <label className="active">E-MAIL</label>
+                      </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input type="password" name="password" value={password} onChange={this.changeHandler} />
-                      <label className="active">SENHA</label>
-                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input type="password" name="password" value={password} onChange={this.changeHandler} />
+                        <label className="active">SENHA</label>
+                      </div>
                     </div>
                     <div className="row input-field col s12">
-                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0}}>
+                      <a onClick={this.submitHandler} className="waves-effect waves-light btn" style={{ width: 330, zIndex: 0 }}>
                         <i className="material-icons right">send</i>LOGAR</a>
                     </div>
                     <div className="row">
