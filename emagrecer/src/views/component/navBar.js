@@ -42,19 +42,22 @@ class MyNav extends Component {
                 <div className="center">
                   <div className="col s12 ">
                     <div id="topbarsearch">
-                      <div className="input-field col s6 s12 white-text">
-                        <input name="name" type="text" placeholder="Pesquisar" id="autocomplete-input"
+                      
+                      <div className="input-field col  s12 white-text">
+                      <i className="material-icons left" style={{margin:"0px"}}>search</i>
+                        <input name="name" type="text" placeholder="Pesquisar" id="autocomplete-input" style={{width:'80%'}}
                           className="autocomplete white-text" onKeyDown={this.goToUsers} onChange={this.changeHandler} />
+                     
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
-              <li><Link to={`/mensagens`} className="button hide-on-med-and-down"><i className="material-icons right">message</i>MENSAGENS</Link></li>
-              <li><Link to={`/solicitacoes`} className="button hide-on-med-and-down"><i className="material-icons right">notifications</i>SOLICITAÇÕES</Link></li>
-              <li><Link to={`/feed`} className="button hide-on-med-and-down"><i className="material-icons right">home</i>FEED</Link></li>
-              <li><a onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right">account_circle</i>PERFIL</a></li>
-              <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right">exit_to_app</i>SAIR</a></li>
+              <li><Link to={`/mensagens`} className="button hide-on-med-and-down"><i className="material-icons right" title="Mensagens">message</i></Link></li>
+              <li><Link to={`/solicitacoes`} className="button hide-on-med-and-down"><i className="material-icons right"title="Notificações">notifications</i></Link></li>
+              <li><Link to={`/feed`} className="button hide-on-med-and-down"><i className="material-icons right" title="Inicio">home</i></Link></li>
+              <li><a onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right"title="Perfil">account_circle</i></a></li>
+              <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right" title="Sair">exit_to_app</i></a></li>
             </ul>
           </div>
         </nav>

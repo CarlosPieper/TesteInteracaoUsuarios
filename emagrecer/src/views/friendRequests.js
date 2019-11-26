@@ -27,7 +27,7 @@ class FriendRequests extends Component {
                 });
             })
             .catch(function (err) {
-                
+
             });
     }
 
@@ -45,7 +45,7 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                
+
             });
     }
 
@@ -63,7 +63,7 @@ class FriendRequests extends Component {
             self.getFriendRequests();
         })
             .catch(function (err) {
-                
+
             });
     }
 
@@ -90,28 +90,40 @@ class FriendRequests extends Component {
                                     request.requesterPicture = "/images/default.PNG";
                                 }
                                 return (
-                                    <div>
+                                    <>
                                         <div className="card small" style={{ height: 200 }}>
                                             <div className="card-content">
-                                                <div key={request.requester}>
-                                                    <span>
-                                                        <img src={request.requesterPicture} className="circle ImgGp" />
-                                                    </span>
-                                                    <span className="name">
-                                                        {request.requesterName}
-                                                    </span>
-                                                    <div className="card-footer">
-                                                        <span>
-                                                            <a className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</a>
-                                                        </span>
-                                                        <span>
-                                                            <a className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</a>
-                                                        </span>
+                                                <div className="row">
+
+                                                    <div key={request.requester}>
+                                                        <div className="col l4">
+                                                            <span>
+                                                                <img src={request.requesterPicture} className="circle ImgGp" style={{ height: "150px", width: "150px" }} />
+                                                            </span>
+                                                        </div>
+                                                        <div className="col l4"><span className="name">
+                                                            <strong style={{textDecoration:'underline'}}>
+                                                                {request.requesterName}
+                                                            </strong>
+
+                                                        </span> </div>
+                                                        <div className="col l4">
+
+                                                            <span>
+                                                                <a className="btn blue darken-3" style={{ marginTop: "30px", width: "170px" }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</a>
+
+                                                                <a className="btn red darken-3" style={{ width: "170px" }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</a>
+                                                            </span>
+                                                        </div>
                                                     </div>
+
+
+
                                                 </div>
+
                                             </div>
                                         </div>
-                                    </div>
+                                    </>
                                 );
                             })}
                         </div>

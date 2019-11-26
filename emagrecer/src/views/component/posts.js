@@ -52,9 +52,26 @@ class Posts extends Component {
                     <div className="card-image" >
                       <img src={post.picture} />
                     </div>
-                    <span style={{ marginLeft: 25 }} className="card-title">{post.title}</span>
+                  
                     <div className="card-content">
-                      <p>{post.text}</p>
+                      <div className="row">
+                        <div className="col l7">
+                        <span style={{ marginLeft: 25,textDecoration:'underline' }} className="card-title">{post.title}</span>
+                          <p>{post.text}</p>
+                        </div>
+                        <div className="col l3">
+                         <span className="float right">Criado por:<br/>
+                         {post.authorName}</span>
+                         </div>
+                         <div className="col l1">
+                            <img src={"/images/default.PNG"}  style={{width:'60px', height:'60px', borderRadius:'50px'}}/>'
+
+                            
+
+                         
+                        </div>
+                      </div>
+
                     </div>
                   </a>
                 </div>
