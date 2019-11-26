@@ -33,7 +33,7 @@ class Friends extends Component {
       .then(function (response) {
         response.json().then(function (data) {
           self.setState({ friends: data.friends });
-          //console.log(self.state.users);
+          console.log(self.state.friends);
         });
       })
       .catch(function (err) {
@@ -52,20 +52,27 @@ class Friends extends Component {
     var self = this;
     if (self.state.friends !== undefined && self.state.friends !== null) {
       return (
-        <div>
-          <div>
-            <ul className="collection avatar hoverable" >
-              {self.state.friends.map(function (friend) {
-                return (
-                  <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
-                    <span><img src={friend.profilePic} className="circle ImgGp" alt=""/> </span>
-                    <span className="name">{friend.name}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
+        <>
+
+          <ul className="collection avatar hoverable" >
+            {self.state.friends.map(function (friend) {
+              return (
+                <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
+                  <div className="row">
+                    <div className='col l6'>
+                      <span><img src={friend.profilePic} className="circle ImgGp" style={{ width: "60px" }} /></span>
+                    </div>
+                    <div className='col l6'>
+                      <span style={{ fontSize: "20px" }}>{friend.name}</span>
+                    </div>
+
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+        </>
 
       );
     } else {

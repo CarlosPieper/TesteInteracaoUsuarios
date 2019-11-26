@@ -68,12 +68,14 @@ class Post extends Component {
                     <div className="col l8 s9">
                         <div className="card medium card forum">
                             <div className="card-image">
-                                <img src={self.state.post.picture} alt="" />
+                                <img src={self.state.post.picture} />
+                                
                             </div>
                             <div className="card-title" style={{ marginLeft: 25 }}>
                                 <span>{self.state.post.title}</span>
                             </div>
                             <div className="card-content">
+                           
                                 <p >{self.state.post.text}</p>
                             </div>
                             <div className="card-action" >
