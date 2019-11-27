@@ -33,7 +33,7 @@ class Friends extends Component {
       .then(function (response) {
         response.json().then(function (data) {
           self.setState({ friends: data.friends });
-          console.log(self.state.friends);
+          //console.log(self.state.users);
         });
       })
       .catch(function (err) {
@@ -53,18 +53,18 @@ class Friends extends Component {
     if (self.state.friends !== undefined && self.state.friends !== null) {
       return (
         <div>
-          <div>
-            <ul className="collection avatar hoverable" >
-              {self.state.friends.map(function (friend) {
-                return (
-                  <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
-                    <span><img src={friend.profilePic} className="circle ImgGp" alt="" /> </span>
-                    <span className="name">{friend.name}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <ul className="collection avatar hoverable" >
+            {self.state.friends.map(function (friend) {
+              return (
+                <li className="collection-item hoverable friends" key={friend.id} onClick={() => { self.goToFriendProfile(friend.id) }}>
+                  <div className="row">
+                    <span><img src={friend.profilePic} className="circle ImgGp" style={{ width: "60px" }} alt="" /></span>
+                    <p style={{ fontSize: "16px" }}>{friend.name}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       );
     } else {

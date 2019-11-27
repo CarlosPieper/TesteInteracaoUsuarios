@@ -65,7 +65,7 @@ class UserList extends Component {
                                 user.profilePic = "/images/default.PNG";
                             }
                             return (
-                                <div className="card small" style={{ height: 200 }} onClick={() => { self.goToUserProfile(user.id) }}>
+                                <div className="card small small hoverable" style={{ height: 200 }} onClick={() => { self.goToUserProfile(user.id) }}>
                                     <div className="card-content">
                                         <div key={user.id}>
                                             <span>

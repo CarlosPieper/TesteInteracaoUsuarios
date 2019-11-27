@@ -11,7 +11,8 @@ class Posts extends Component {
         id: 0,
         picture: "",
         text: "",
-        title: ""
+        title: "",
+        authorPic: "",
       }],
     }
     setTimeout(() => { this.getPosts(); }, 50);
@@ -46,34 +47,27 @@ class Posts extends Component {
               if (post.picture === "" || post.picture === " ") {
                 post.picture = "/images/default.PNG";
               }
+              if (post.authorPic === "" || post.authorPic === " ") {
+                post.authorPic = "/images/default.PNG";
+              }
               return (
                 <div className="card small forum hoverable" key={post.id} onClick={() => (self.goToForum(post.id))}>
-                  <a href="#0" className="text" >
-                    <div className="card-image" >
-                      <img alt="" src={post.picture} />
-                    </div>
-                  
-                    <div className="card-content">
-                      <div className="row">
-                        <div className="col l7">
-                        <span style={{ marginLeft: 25,textDecoration:'underline' }} className="card-title">{post.title}</span>
-                          <p>{post.text}</p>
-                        </div>
-                        <div className="col l3">
-                         <span className="float right">Criado por:<br/>
-                         {post.authorName}</span>
-                         </div>
-                         <div className="col l1">
-                            <img src={"/images/default.PNG"}  style={{width:'60px', height:'60px', borderRadius:'50px'}}/>'
-
-                            
-
-                         
-                        </div>
+                  <div className="card-image" >
+                    <img alt="" src={post.picture} />
+                  </div>
+                  <div className="card-content">
+                    <div className="row">
+                      <div className="col l7">
+                        <div className="car-title" style={{ marginLeft: 5 }}>{post.authorName}</div>
+                        <div className="card-content authorname" style={{ marginTop: -10, marginLeft: -20, fontSize: 18 }}><strong>{post.title}</strong></div>
                       </div>
-
+                      <div className="col l3">
+                      </div>
+                      <div className="col l1">
+                        <img src={post.authorPic} style={{ width: '70px', height: '60px', borderRadius: '50px' }} alt="" />
+                      </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               );
             })}

@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(img/fundo.jpg);
+  background-color: lightgray;
   background-attachment: fixed;
 }
 
@@ -81,8 +81,8 @@ code {
     border-radius: 50%;
 }
 .text{
-   color:black;
-   font-family: Arial, Helvetica, sans-serif;
+  color:black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .amigos{
 float: inline-end;
@@ -160,4 +160,10 @@ h5{
 }
 .forum.hoverable:hover{
   cursor: pointer;
+}
+.hoverable:hover{
+  cursor: pointer;
+}
+div.card-content.authorname{
+  text-transform: uppercase !important;
 }

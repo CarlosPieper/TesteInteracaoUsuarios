@@ -56,7 +56,7 @@ class MyNav extends Component {
               <li><Link to={`/mensagens`} className="button hide-on-med-and-down"><i className="material-icons right" title="Mensagens">message</i></Link></li>
               <li><Link to={`/solicitacoes`} className="button hide-on-med-and-down"><i className="material-icons right" title="Notificações">notifications</i></Link></li>
               <li><Link to={`/feed`} className="button hide-on-med-and-down"><i className="material-icons right" title="Inicio">home</i></Link></li>
-              <li><a onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right" title="Perfil">account_circle</i></a></li>
+              <li><a href="#0" onClick={() => { this.goToProfile() }} className="button hide-on-med-and-down"><i className="material-icons right" title="Perfil">account_circle</i></a></li>
               <li><a href="/login" className="button hide-on-med-and-down" onClick={this.logOut}><i className="material-icons right" title="Sair">exit_to_app</i></a></li>
             </ul>
           </div>

@@ -13,11 +13,9 @@ class FriendRequests extends Component {
             }]
         }
     }
-
     UNSAFE_componentWillMount() {
         setTimeout(() => { this.getFriendRequests(); }, 100);
     }
-
     getFriendRequests() {
         var self = this;
         let queryString = new URLSearchParams();
@@ -99,8 +97,8 @@ class FriendRequests extends Component {
                                                     <span>
                                                         <img src={request.requesterPicture} className="circle ImgGp" alt="" />
                                                     </span>
-                                                    <span className="name" style={{ textTransform: "uppercase" }}>
-                                                        <strong>{request.requesterName}</strong>
+                                                    <span className="name">
+                                                        {request.requesterName}
                                                     </span>
                                                     <div className="card-footer">
                                                         <span>
