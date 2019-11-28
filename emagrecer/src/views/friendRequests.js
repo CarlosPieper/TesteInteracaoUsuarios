@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { getId } from '../services/auth';
 import MyNav from './component/navBar';
 import MySide from './component/menu/MySide';
+import { withRouter } from "react-router-dom";
+
 class FriendRequests extends Component {
     constructor(props) {
         super(props);
         this.state = {
             requests: [{
-                requester: '',
-                requesterName: '',
-                requesterPicture: '',
+                requester: null,
+                requesterName: null,
+                requesterPicture: null,
             }]
         }
     }
 
     UNSAFE_componentWillMount() {
-        setTimeout(() => { this.getFriendRequests(); }, 100);
+        setTimeout(() => { this.getFriendRequests(); }, 10);
     }
 
     getFriendRequests() {
@@ -69,12 +71,23 @@ class FriendRequests extends Component {
             });
     }
 
+    goToProfile(id) {
+        this.props.history.push(`/perfil/${id}`);
+    }
+
     render() {
         var self = this;
-        if (self.state.requests === undefined || self.state.requests === null) {
+        if (self.state.requests.length === 0) {
             return (
                 <div>
-
+                    <MyNav />
+                    <MySide />
+                    <div className="row">
+                        <div className="col l3"></div>
+                        <div className="col l6">
+                            <p>Você não possui nenhum pedido de amizade no momento!</p>
+                        </div>
+                    </div>
                 </div>
             );
         }
@@ -93,21 +106,21 @@ class FriendRequests extends Component {
                                 }
                                 return (
                                     <div>
-                                        <div className="card small" style={{ height: 200 }}>
-                                            <div className="card-content">
+                                        <div className="card small hoverable" style={{ height: 200 }}>
+                                            <div className="card-content" onClick={() => self.goToProfile(request.requester)}>
                                                 <div key={request.requester}>
                                                     <span>
-                                                        <img src={request.requesterPicture} className="circle ImgGp" alt="" />
+                                                        <img src={request.requesterPicture} className="circle ImgGp" alt="" style={{ width: 110, height: 90 }} />
                                                     </span>
-                                                    <span className="name" style={{ textTransform: "uppercase" }}>
+                                                    <span className="name" style={{ textTransform: "uppercase", marginBottom: 25 }}>
                                                         <strong>{request.requesterName}</strong>
                                                     </span>
-                                                    <div className="card-footer">
+                                                    <div className="card-action" style={{ height: 60 }}>
                                                         <span>
-                                                            <button className="btn blue darken-3" style={{ marginLeft: 10 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</button>
+                                                            <button className="btn blue darken-3" style={{ marginLeft: 10, marginTop: -5, marginBottom: 5 }} onClick={() => self.acceptFriendRequest(request.requester)}><i className="material-icons left">person_add</i>Aceitar</button>
                                                         </span>
                                                         <span>
-                                                            <button className="btn red darken-3" style={{ marginLeft: 10 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</button>
+                                                            <button className="btn red darken-3" style={{ marginLeft: 10, marginTop: -5, marginBottom: 5 }} onClick={() => self.denyFriendRequest(request.requester)}><i className="material-icons left">cancel</i>Recusar</button>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -124,4 +137,4 @@ class FriendRequests extends Component {
         }
     }
 }
-export default FriendRequests;
+export default withRouter(FriendRequests);

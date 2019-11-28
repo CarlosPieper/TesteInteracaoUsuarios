@@ -65,7 +65,6 @@ namespace EmagrecerSocial.API.Controllers
             password = Cryptography.EncryptPassword(password);
             try
             {
-
                 User user = repository.Login(email, password);
                 if (user.Id != 0)
                 {
@@ -206,11 +205,13 @@ namespace EmagrecerSocial.API.Controllers
         [ActionName("SaveProfilePic")]
         public ActionResult SaveProfilePic(string name)
         {
+            DateTime now = DateTime.Now;
             try
             {
                 var file = Request.Form.Files[0];
                 string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\profile\\";
-                string fileName = utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
+                string picName = now.Year + "" + now.Month + "" + now.Day + "" + now.Hour + "" + now.Minute + "" + now.Second + "" + now.Millisecond + utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
+                string fileName = picName;
                 UtilitiesRepository.profilePic = "/images/profile" + "/" + fileName;
                 if (!Directory.Exists(path))
                 {
@@ -236,11 +237,13 @@ namespace EmagrecerSocial.API.Controllers
         [ActionName("SaveCoverPic")]
         public ActionResult SaveCoverPic(string name)
         {
+            DateTime now = DateTime.Now;
             try
             {
                 var file = Request.Form.Files[0];
                 string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\cover\\";
-                string fileName = utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
+                string picName = now.Year + "" + now.Month + "" + now.Day + "" + now.Hour + "" + now.Minute + "" + now.Second + "" + now.Millisecond + utilities.RemoveAccents(name.Replace(" ", "") + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
+                string fileName = picName;
                 UtilitiesRepository.coverPic = "/images/cover" + "/" + fileName;
                 if (!Directory.Exists(path))
                 {

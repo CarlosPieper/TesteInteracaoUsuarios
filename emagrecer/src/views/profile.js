@@ -401,7 +401,7 @@ class Profile extends Component {
                                         </div >
                                         <div className="row">
                                             <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                <input type="date" name="birthDate" defaultValue={self.birth} onChange={this.changeHandler} />
+                                                <input type="date" name="birthDate" defaultValue={self.state.birthDate} onChange={this.changeHandler} />
                                                 <label className="active">Data de Nascimento</label>
                                             </div>
                                             <div className="input-field col s6" style={{ marginTop: 0 }}>
@@ -415,7 +415,7 @@ class Profile extends Component {
                                                 <label className="active">Gênero (opcional)</label>
                                             </div>
                                             <div className="input-field col s6" style={{ marginTop: 0 }}>
-                                                <input disabled type="date" name="registerDate" defaultValue={self.register} onChange={this.changeHandler} />
+                                                <input disabled type="date" name="registerDate" defaultValue={self.state.registrationDate} onChange={this.changeHandler} />
                                                 <label className="active">Data de Registro</label>
                                             </div>
                                         </div>

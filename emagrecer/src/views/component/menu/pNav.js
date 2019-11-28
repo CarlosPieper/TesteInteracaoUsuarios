@@ -22,7 +22,6 @@ class Pnav extends Component {
       },
     }
     setTimeout(() => { this.GetUser(); }, 300);
-
   }
 
   GetUser() {
@@ -37,7 +36,6 @@ class Pnav extends Component {
         });
       })
       .catch(function (err) {
-        
         self.setState({ user: null });
       });
   }
@@ -49,19 +47,20 @@ class Pnav extends Component {
   }
 
   render() {
+    if (this.state.user.profilePic === " " || this.state.user.profilePic === " " || this.state.user.profilePic === null || this.state.user.profilePic === undefined)
+      this.state.user.profilePic = "/images/default.PNG";
     return (
       <Link to={`/perfil/${getId()}`} onClick={() => { this.reloadIfRequired(getId()) }}>
         <li>
           <div className="user-view" >
             <div className="background">
-              <img src={this.state.user.coverPic} width="100%" height="100%" alt=""/>
+              <img src={this.state.user.coverPic} width="100%" height="100%" alt="" />
             </div>
-            <img className="circle" src={this.state.user.profilePic} alt=""/>
+            <img className="circle" src={this.state.user.profilePic} alt="" />
             <span className="white-text">{this.state.user.name}</span>
             <span className="white-text email">{this.state.user.email}</span>
           </div>
         </li>
-
       </Link>
     );
   }

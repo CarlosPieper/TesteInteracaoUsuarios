@@ -12,11 +12,10 @@ const customStyles = {
     transform: 'translate(-50%, -45%)',
     height: '350px',
     overlfow: 'scroll'
-
   },
 };
+
 class Login extends Component {
-  hubConnection;
   constructor(props) {
     super(props);
     this.formData = new FormData();

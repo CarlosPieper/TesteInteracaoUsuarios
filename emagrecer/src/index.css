@@ -25,7 +25,6 @@ code {
 }
 
 .forum{
-  
   position: relative;
   float: inline-start; 
 }
@@ -166,4 +165,38 @@ h5{
 }
 div.card-content.authorname{
   text-transform: uppercase !important;
+}
+.card-title.authorname:hover{
+  cursor: pointer;
+}
+#text{
+  max-height: 200;
+  min-height: 200;
+}
+.card.small{
+  overflow: scroll !important;
+}
+.card.medium{
+  overflow: scroll !important;
+}
+.card.large{
+  overflow: scroll !important;
+}
+.card{
+  overflow: scroll !important;
+}
+div.card-panel.teal.lighten-2.sent{
+  border-radius: 1px 20px 20px 20px;
+  background-color: lightseagreen !important;
+}
+div.card-panel.teal.lighten-2.received{
+  border-radius: 20px 1px 20px 20px;
+  margin-left: 450px;
+  background-color: darkturquoise !important;
+}
+.msgsent{
+  color: darkturquoise;
+}
+.msgreceived{
+  color: lightseagreen;
 }

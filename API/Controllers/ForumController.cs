@@ -118,12 +118,14 @@ namespace EmagrecerSocial.API.Controllers
         [HttpPost]
         public void ImagePost()
         {
+            DateTime now = DateTime.Now;
             try
             {
                 var file = Request.Form.Files[0];
                 string path = @"C:\\EmagrecerSocial\\emagrecer\\public\\images\\";
-                string fileName = utilities.RemoveAccents(ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", ""));
-                UtilitiesRepository.filePath = "/images" + "/" + fileName.Replace(" ", "");
+                string picName = now.Year + "" + now.Month + "" + now.Day + "" + now.Hour + "" + now.Minute + "" + now.Second + "" + now.Millisecond + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", "");
+                string fileName = picName;
+                UtilitiesRepository.filePath = "/images" + "/" + fileName;
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

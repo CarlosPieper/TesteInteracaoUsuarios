@@ -21,7 +21,7 @@ class NewForum extends Component {
     this.state = {
       isActive: false,
       title: '',
-
+      text: '',
     }
   }
 
@@ -60,8 +60,14 @@ class NewForum extends Component {
     if (!this.state.title.length > 0) {
       alert("Título é obrigatório!")
     }
+    else if (this.state.title.length > 50) {
+      alert("O máximo de caracteres para o título é 50!");
+    }
     else if (this.state.text.length < 1 || this.state.text === " ") {
       alert("Texto é obrigatório!")
+    }
+    else if (this.state.text.length > 300) {
+      alert("O máximo de caracteres para o texto é 300!");
     }
     else {
       var formData = new FormData();
@@ -91,51 +97,9 @@ class NewForum extends Component {
       <div>
         <li> <a href="#0" onClick={this.toggleModal} className="btn modal-trigger blue darken-3">CRIAR FORUM</a></li>
         <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} style={customStyles}>
-          <div>
-            <div className="modal-content">
-              <h4>Novo Forum</h4>
-              <div className="row">
-                <form className="col s12">
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input name="title" type="text" onChange={this.changeHandler} />
-                      <label className="inputLabel">Título</label>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="file-field input-field col s12" style={{ marginTop: 0 }}>
-                      <div className="waves-effect waves-light btn">
-                        <i className="material-icons">add_a_photo</i>
-                        <input type="file" accept='image/*' name="picture" onChange={(e) => self.savePicture(e)} />
-                      </div>
-                      <div className="file-path-wrapper" style={{ marginTop: 0 }}>
-                        <input className="file-path validate" type="text"
-                          placeholder="Imagem" defaultValue={self.state.picture} disabled />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12" style={{ marginTop: 0 }}>
-                      <textarea name="text" className="materialize-textarea" onChange={this.changeHandler}></textarea>
-                      <label className="inputLabel">Texto</label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="waves-effect waves-light btn red" style={{ width: 200, marginLeft: 20 }}>
-                <i className="material-icons right">close</i>CANCELAR</button>
-              <button onClick={() => {
-                self.PostPicture();
-                setTimeout(() => { self.PostForum() })
-              }}
-                className="waves-effect waves-light btn green" style={{ width: 200, marginLeft: 15 }}>
-                <i className="material-icons right">check</i>ENVIAR</button>
-            </div>
-          </div>
+
         </Modal>
-      </div>
+      </div >
     );
   }
 }

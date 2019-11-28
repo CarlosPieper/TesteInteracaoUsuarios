@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NewForum from './newForum';
 import Pnav from './pNav';
 import Friends from '../friends'
 //import NewGroup from './newGroup';
@@ -10,7 +9,6 @@ class MySide extends Component {
         <ul className="side-nav  fMenu fixed">
           <Pnav />
           <div className="opMenu" >
-            <NewForum />
             <Friends />
             {/* <NewGroup />
           </div>
