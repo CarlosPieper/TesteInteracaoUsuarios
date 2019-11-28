@@ -114,7 +114,6 @@ class Chat extends Component {
     }
 
     render() {
-        var elClass;
         return (
             <div>
                 <MyNav />
