@@ -20,9 +20,8 @@ namespace EmagrecerSocial.API.Controllers
 
         [ActionName("Include")]
         [HttpPost]
-        public ActionResult Include(ForumComment forumComment, int id)
+        public ActionResult Include(ForumComment forumComment)
         {
-            forumComment.Author = id;
             try
             {
                 repository.Include(forumComment);
@@ -30,23 +29,7 @@ namespace EmagrecerSocial.API.Controllers
             }
             catch (MySqlException ex)
             {
-                
-                throw ex;
-            }
-        }
 
-        [ActionName("Modify")]
-        [HttpPost]
-        public ActionResult Modify(ForumComment forumComment)
-        {
-            try
-            {
-                repository.Include(forumComment);
-                return Ok(new { success = true });
-            }
-            catch (MySqlException ex)
-            {
-                
                 throw ex;
             }
         }
@@ -58,11 +41,11 @@ namespace EmagrecerSocial.API.Controllers
             try
             {
                 List<ForumComment> forumComments = repository.ListForumComments(forum);
-                return Ok(new {forumComments = forumComments});
+                return Ok(new { forumComments = forumComments });
             }
             catch (MySqlException ex)
             {
-                
+
                 throw ex;
             }
         }

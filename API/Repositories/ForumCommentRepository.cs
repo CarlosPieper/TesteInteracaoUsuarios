@@ -23,7 +23,6 @@ namespace EmagrecerSocial.API.Repositories
                 command.Parameters.Add(@"AUTHOR", MySqlDbType.Int32).Value = forumComment.Author;
                 command.ExecuteNonQuery();
             }
-            ;
         }
 
         public List<ForumComment> ListForumComments(int forum)
@@ -48,20 +47,7 @@ namespace EmagrecerSocial.API.Repositories
                     }
                 }
             }
-            ;
             return comments;
-        }
-
-        public void Modify(ForumComment forumComment)
-        {
-            string sql = "UPDATE FORUM_COMMENTS SET COMMENT_TEXT = ? WHERE ID = ?";
-            using (MySqlCommand command = new MySqlCommand(sql, connection))
-            {
-                command.Parameters.Add(@"COMMENT_TEXT", MySqlDbType.String).Value = forumComment.Text;
-                command.Parameters.Add(@"ID", MySqlDbType.Int32).Value = forumComment.Id;
-                command.ExecuteNonQuery();
-            }
-            ;
         }
     }
 }

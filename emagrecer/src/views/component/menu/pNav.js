@@ -58,7 +58,6 @@ class Pnav extends Component {
             </div>
             <img className="circle" src={this.state.user.profilePic} alt="" />
             <span className="white-text">{this.state.user.name}</span>
-            <span className="white-text email">{this.state.user.email}</span>
           </div>
         </li>
       </Link>

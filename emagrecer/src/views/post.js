@@ -92,10 +92,10 @@ class Post extends Component {
                 method: 'POST',
                 body: formData,
             }
-            const request = new Request('https://localhost:5001/Forum/Include', options);
+            const request = new Request('https://localhost:5001/ForumComments/Include', options);
             fetch(request).then(function (response) {
                 response.json().then(function (data) {
-                    self.getPosts();
+                    self.getComments();
                 })
             }).catch(function (err) {
             });
